@@ -7,7 +7,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from '@auth/mongodb-adapter';
 import clientPromise from "@/libs/mongoConnect"
 
-const handler = NextAuth({
+export const authOptions = {
   secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
@@ -35,15 +35,13 @@ const handler = NextAuth({
 
         const passwordOk = bcrypt.compareSync(password, user.password);
 
-        console.log('nextauth running...');
-        console.log('credentials:', credentials);
-        console.log('user found:', user);
-        console.log('password comparison:', password, user.password);
-        console.log({ passwordOk });
+        // console.log('nextauth running...');
+        // console.log('credentials:', credentials);
+        // console.log('user found:', user);
+        // console.log('password comparison:', password, user.password);
+        // console.log({ passwordOk });
 
-        // if (passwordOk) return user;
-
-        return user
+        if (passwordOk) return user;
 
         return null;
       },
@@ -53,6 +51,8 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
   ],
-});
+}
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

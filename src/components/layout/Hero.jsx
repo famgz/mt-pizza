@@ -24,11 +24,12 @@ export default function Hero(params) {
           </button>
         </div>
       </div>
-      <div className='relative'>
+      <div className='relative w-full h-full'>
         <Image
+        className='w-full h-full'
           src={'/pizza.png'}
-          layout={'fill'}
-          objectFit='contain'
+          width={350}
+          height={350}
           alt={''}
         />
       </div>
