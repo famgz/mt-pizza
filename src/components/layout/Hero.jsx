@@ -1,7 +1,7 @@
 import Right from '@/icons/Right';
 import Image from 'next/image';
 
-export default function Hero(params) {
+export default function Hero() {
   return (
     <section className='hero mt-4'>
       <div className='py-12'>
