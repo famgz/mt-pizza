@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function ProfilePage() {
   const session = useSession();
@@ -11,10 +12,6 @@ export default function ProfilePage() {
   const user = session?.data?.user;
   const [userName, setUserName] = useState('');
   const [image, setImage] = useState('');
-  const [saved, setSaved] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [uploaded, setUploaded] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -27,39 +24,58 @@ export default function ProfilePage() {
 
   async function handleProfileInfoUpdate(ev) {
     ev.preventDefault();
-    setSaved(false);
-    setIsSaving(true);
-    const response = await fetch('/api/profile', {
+
+    toast.dismiss();
+
+    const savingPromise = fetch('/api/profile', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: userName, image }),
+    }).then((response) => {
+      if (response.ok) return true;
+      throw new Error('Something went wrong');
     });
 
-    setIsSaving(false);
-
-    if (response.ok) {
-      setSaved(true);
-    }
+    await toast.promise(savingPromise, {
+      loading: 'Saving...',
+      success: 'Profile saved!',
+      error: 'Error saving the profile',
+    });
   }
 
   async function handleFileChange(ev) {
     const files = ev.target.files;
 
     if (files?.length === 1) {
-      setIsUploading(true);
       const data = new FormData();
       data.set('file', files[0]);
-      const response = await fetch('/api/upload', {
+
+      const uploadingPromise = fetch('/api/upload', {
         method: 'POST',
         body: data,
+      }).then((response) => {
+        if (response.ok) {
+          return response.json().then((imageLink) => {
+            console.log(imageLink);
+            setImage(imageLink);
+          });
+        }
+        throw new Error('Something went wrong');
       });
-      const imageLink = await response.json();
-      console.log({ imageLink });
-      setIsUploading(false);
-      if (imageLink) {
-        setImage(imageLink);
-        setUploaded(true);
-      }
+
+      await toast.promise(
+        uploadingPromise,
+        {
+          loading: 'Uploading...',
+          success: 'Upload done!\nClick Save to complete',
+          error: 'upload error',
+        },
+        {
+          success: {
+            duration: 5000,
+          },
+        }
+      );
     }
   }
 
@@ -75,26 +91,10 @@ export default function ProfilePage() {
     <section className='mt-8'>
       <h1 className='text-center text-primary text-4xl mb-4'>Profile</h1>
       <div className='max-w-md mx-auto'>
-        {isSaving && (
-          <h2 className='text-center bg-blue-100 p-4 rounded-lg border border-blue-300'>
-            Saving...
-          </h2>
-        )}
-        {saved && (
-          <h2 className='text-center bg-green-100 p-4 rounded-lg border border-green-300'>
-            Profile saved!
-          </h2>
-        )}
-        {isUploading && (
-          <h2 className='text-center bg-blue-100 p-4 rounded-lg border border-blue-300'>
-            Uploading...
-          </h2>
-        )}
-        {(uploaded && !saved) && (
-          <h2 className='text-center bg-green-100 p-4 rounded-lg border border-green-300'>
-            Image Uploaded! Hit the Save button to complete.
-          </h2>
-        )}
+        {/* {isSaving && <InfoBox loading={true}>Saving...</InfoBox>}
+        {saved && <InfoBox loading={false}>Profile saved!</InfoBox>}
+        {isUploading && <InfoBox loading={true}>Uploading...</InfoBox>}
+        {uploaded && !saved && ( <InfoBox loading={false}> Image Uploaded! Hit the Save button to complete. </InfoBox> )} */}
       </div>
 
       <div className='max-w-md mx-auto'>
