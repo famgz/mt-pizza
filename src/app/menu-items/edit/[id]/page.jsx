@@ -74,23 +74,25 @@ export default function EditMenuItemPage() {
   if (data.admin) return 'Not an admin';
 
   return (
-    <section className='mt-8'>
+    <div className='mt-8'>
       <UserTabs isAdmin={true} />
-      <div className='max-w-md mx-auto mt-8'>
-        <Link href={'/menu-items'} className='button'>
-          <Left />
-          <span>Show all menu items</span>
-        </Link>
-      </div>
-      <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit} />
-      <div className='max-w-md mx-auto mt-2'>
-        <div className='max-w-xs ml-auto pl-4'>
-          <DeleteButton
-            label='Delete this menu item'
-            onDelete={handleDeleteClick}
-          />
+      <section className='page-content'>
+        <div>
+          <Link href={'/menu-items'} className='button'>
+            <Left />
+            <span>Show all menu items</span>
+          </Link>
         </div>
-      </div>
-    </section>
+        <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit} />
+        <div className='max-w-md mx-auto mt-2'>
+          <div className='max-w-xs ml-auto pl-4'>
+            <DeleteButton
+              label='Delete this menu item'
+              onDelete={handleDeleteClick}
+            />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

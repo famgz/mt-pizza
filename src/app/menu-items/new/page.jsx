@@ -41,15 +41,15 @@ export default function NewMenuItemPage() {
   if (data.admin) return 'Not an admin';
 
   return (
-    <section className='mt-8'>
+    <div className='mt-8'>
       <UserTabs isAdmin={true} />
-      <div className='max-w-md mx-auto mt-8'>
+      <section className='page-content'>
         <Link href={'/menu-items'} className='button'>
           <Left />
           <span>Show all menu items</span>
         </Link>
-      </div>
-      <MenuItemForm menuItem={null} onSubmit={handleFormSubmit}/>
-    </section>
+        <MenuItemForm menuItem={null} onSubmit={handleFormSubmit}/>
+      </section>
+    </div>
   );
 }

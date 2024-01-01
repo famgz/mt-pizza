@@ -81,22 +81,13 @@ export default function ProfilePage() {
   }
 
   return (
-    <section className='mt-8'>
+    <div className='mt-8'>
       <UserTabs isAdmin={isAdmin} />
-
-      {/* <h1 className='text-center text-primary text-4xl mb-4'>Profile</h1> */}
-      <div className='max-w-md mx-auto mt-8'>
-        {/* {isSaving && <InfoBox loading={true}>Saving...</InfoBox>}
-        {saved && <InfoBox loading={false}>Profile saved!</InfoBox>}
-        {isUploading && <InfoBox loading={true}>Uploading...</InfoBox>}
-        {uploaded && !saved && ( <InfoBox loading={false}> Image Uploaded! Hit the Save button to complete. </InfoBox> )} */}
-      </div>
-
-      <div className='max-w-md mx-auto'>
+      <section className='page-content'>
         <div className='flex gap-4'>
           <div>
-            <div className='flex flex-col p-2 rounded-lg relative max-w-[120px]'>
-              <EditableImage link={image} setLink={setImage}/>
+            <div className='flex flex-col p-2 rounded-lg relative max-w-[200px]'>
+              <EditableImage link={image || '/default-profile.jpg'} setLink={setImage}/>
             </div>
           </div>
           <form className='grow' onSubmit={handleProfileInfoUpdate}>
@@ -161,7 +152,7 @@ export default function ProfilePage() {
             <button type='submit'>Save</button>
           </form>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

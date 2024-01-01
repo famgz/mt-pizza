@@ -48,7 +48,7 @@ export default function EditableImage({ link, setLink }) {
           src={link}
           width={250}
           height={250}
-          alt='avatar picture'
+          alt=''
         />
       )}
       {!link && (

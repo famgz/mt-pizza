@@ -35,14 +35,14 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           category,
         })
       }
-      className='mt-8 max-w-md mx-auto'
+      className='mt-8 mx-auto'
     >
       <div
         className='grid items-start gap-4'
         style={{ gridTemplateColumns: '.3fr .7fr' }}
       >
         <div>
-          <EditableImage link={image} setLink={setImage} />
+          <EditableImage link={image || '/default-image.jpg'} setLink={setImage} />
         </div>
         <div className='grow'>
           <label>Item name</label>

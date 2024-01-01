@@ -11,7 +11,7 @@ export default function Home() {
 
       <section className='text-center my-16'>
         <SectionHeaders subHeader={'Our story'} mainHeader={'About us'} />
-        <div className='flex flex-col gap-4 mx-auto max-w-md text-gray-500 mt-4'>
+        <div className='page-content flex flex-col gap-4 text-gray-500'>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus
             itaque temporibus a. Hic, delectus quibusdam ducimus reprehenderit

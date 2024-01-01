@@ -74,69 +74,71 @@ export default function CategoriesPage() {
   if (profileData.admin) return 'Not an admin';
 
   return (
-    <section className='mt-8 max-w-md mx-auto'>
+    <div className='mt-8'>
       <UserTabs isAdmin={true} />
-      <form className='mt-8' onSubmit={handleCategorySubmit}>
-        <div className='flex gap-2 items-end'>
-          <div className='grow'>
-            <label>
-              {editedCategory ? 'Update category' : 'New category name'}
-              {editedCategory && (
-                <>
-                  : <b>{editedCategory.name}</b>
-                </>
-              )}
-            </label>
-            <input
-              type='text'
-              value={categoryName}
-              onChange={(ev) => setCategoryName(ev.target.value)}
-            />
-          </div>
-          <div className='pb-3 flex gap-2'>
-            <button className='border border-primary px-4' type='submit'>
-              {editedCategory ? 'Update' : 'Create'}
-            </button>
-            <button
-              className='px-4'
-              type='button'
-              onClick={() => {
-                setCategoryName('');
-                setEditedCategory(null);
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </form>
-      <div>
-        <h2 className='ml-2 mt-8 text-sm text-gray-500'>Categories:</h2>
-        {categories?.length > 0 &&
-          categories.map((c) => (
-            <div
-              key={c._id}
-              className='bg-gray-100 rounded-xl py-2 px-4 flex gap-1 mb-1 items-center'
-            >
-              <div className='grow'>{c.name}</div>
-              <div className='flex gap-1'>
-                <button
-                  onClick={() => {
-                    setEditedCategory(c);
-                    setCategoryName(c.name);
-                  }}
-                  type='button'
-                >
-                  Edit
-                </button>
-                <DeleteButton
-                  label='Delete'
-                  onDelete={() => handleDeleteClick(c._id)}
-                />
-              </div>
+      <section className='page-content'>
+        <form className='mt-8' onSubmit={handleCategorySubmit}>
+          <div className='flex gap-2 items-end'>
+            <div className='grow'>
+              <label>
+                {editedCategory ? 'Update category' : 'New category name'}
+                {editedCategory && (
+                  <>
+                    : <b>{editedCategory.name}</b>
+                  </>
+                )}
+              </label>
+              <input
+                type='text'
+                value={categoryName}
+                onChange={(ev) => setCategoryName(ev.target.value)}
+              />
             </div>
-          ))}
-      </div>
-    </section>
+            <div className='pb-3 flex gap-2'>
+              <button className='border border-primary px-4' type='submit'>
+                {editedCategory ? 'Update' : 'Create'}
+              </button>
+              <button
+                className='px-4'
+                type='button'
+                onClick={() => {
+                  setCategoryName('');
+                  setEditedCategory(null);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+        <div>
+          <h2 className='ml-2 mt-8 text-sm text-gray-500'>Categories:</h2>
+          {categories?.length > 0 &&
+            categories.map((c) => (
+              <div
+                key={c._id}
+                className='bg-gray-100 rounded-xl py-2 px-4 flex gap-1 mb-1 items-center'
+              >
+                <div className='grow'>{c.name}</div>
+                <div className='flex gap-1'>
+                  <button
+                    onClick={() => {
+                      setEditedCategory(c);
+                      setCategoryName(c.name);
+                    }}
+                    type='button'
+                  >
+                    Edit
+                  </button>
+                  <DeleteButton
+                    label='Delete'
+                    onDelete={() => handleDeleteClick(c._id)}
+                  />
+                </div>
+              </div>
+            ))}
+        </div>
+      </section>
+    </div>
   );
 }

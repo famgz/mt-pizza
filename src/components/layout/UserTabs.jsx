@@ -7,7 +7,7 @@ export default function UserTabs({ isAdmin }) {
   const path = usePathname();
 
   return (
-    <div className='tabs flex justify-center gap-2'>
+    <div className='tabs'>
       <Link className={path === '/profile' ? 'active' : ''} href={'/profile'}>
         Profile
       </Link>
@@ -19,14 +19,20 @@ export default function UserTabs({ isAdmin }) {
           >
             Categories
           </Link>
+
           <Link
             className={path.includes('/menu-items') ? 'active' : ''}
             href={'/menu-items'}
           >
             Menu Items
           </Link>
+
           <Link className={path === '/users' ? 'active' : ''} href={'/users'}>
             Users
+          </Link>
+
+          <Link className={path === '/orders' ? 'active' : ''} href={'/orders'}>
+            Orders
           </Link>
         </>
       )}
