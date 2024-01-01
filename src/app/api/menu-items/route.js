@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { MenuItem } from '../../../models/MenuItem';
+import { MenuItem } from '@/models/MenuItem';
 
 export async function POST(req) {
   mongoose.connect(process.env.MONGO_URL);

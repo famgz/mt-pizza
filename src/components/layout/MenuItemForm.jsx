@@ -2,7 +2,7 @@
 
 import EditableImage from '@/components/layout/EditableImage';
 import MenuItemPriceProps from '@/components/layout/MenuItemPriceProps';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function MenuItemForm({ onSubmit, menuItem }) {
   const [image, setImage] = useState(menuItem?.image || '');
@@ -10,7 +10,17 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
   const [description, setDescription] = useState(menuItem?.description || '');
   const [basePrice, setBasePrice] = useState(menuItem?.basePrice || '');
   const [sizes, setSizes] = useState(menuItem?.sizes || []);
-  const [extraIngredients, setExtraIngredients] = useState(menuItem?.extraIngredients || []);
+  const [extraIngredients, setExtraIngredients] = useState(
+    menuItem?.extraIngredients || []
+    );
+  const [category, setCategory] = useState(menuItem?.category || '');
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/categories').then((res) => {
+      res.json().then((categories) => setCategories(categories));
+    });
+  }, []);
 
   return (
     <form
@@ -22,6 +32,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           basePrice,
           sizes,
           extraIngredients,
+          category,
         })
       }
       className='mt-8 max-w-md mx-auto'
@@ -40,12 +51,24 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
             onChange={(ev) => setName(ev.target.value)}
             type='text'
           />
+
           <label>Description</label>
           <input
             value={description}
             onChange={(ev) => setDescription(ev.target.value)}
             type='text'
           />
+
+          <label>Category</label>
+          <select value={category} onChange={ev => setCategory(ev.target.value)}>
+            {categories?.length > 0 &&
+              categories.map((c) => (
+                <option key={c._id} value={c._id}>
+                  {c.name}
+                </option>
+              ))}
+          </select>
+
           <label>Base Price</label>
           <input
             value={basePrice}
