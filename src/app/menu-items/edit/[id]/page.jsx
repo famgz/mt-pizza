@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import DeleteButton from '@/components/DeleteButton';
 
 export default function EditMenuItemPage() {
   const { id } = useParams();
@@ -54,15 +55,15 @@ export default function EditMenuItemPage() {
       const response = await fetch('/api/menu-items?_id=' + id, {
         method: 'DELETE',
       });
-      if(response.ok)resolve()
-      else reject()
+      if (response.ok) resolve();
+      else reject();
     });
 
     await toast.promise(promise, {
       loading: 'Deleting...',
       success: 'Deleted',
-      error: 'Erroe'
-    })
+      error: 'Erroe',
+    });
 
     setRedirectToItems(true);
   }
@@ -82,9 +83,12 @@ export default function EditMenuItemPage() {
         </Link>
       </div>
       <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit} />
-      <div className='max-w-md mx-auto mt-4'>
+      <div className='max-w-md mx-auto mt-2'>
         <div className='max-w-xs ml-auto pl-4'>
-          <button onClick={handleDeleteClick}>Delete this menu item</button>
+          <DeleteButton
+            label='Delete this menu item'
+            onDelete={handleDeleteClick}
+          />
         </div>
       </div>
     </section>

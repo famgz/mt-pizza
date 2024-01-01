@@ -36,7 +36,8 @@ button, .button {
 }
 
 button[type='submit'],
-.submit {
+.submit,
+button.primary {
   @apply border-primary bg-primary text-white;
 }
 
