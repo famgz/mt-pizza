@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function MenuItem(params) {
   return (
-    <div className='bg-gray-200 p-4 rounded-lg text-center hover:bg-gray-50 hover:shadow-md hover:shadow-black/25 transition-all'>
+    <div className='card bg-gray-200 p-4 rounded-lg text-center '>
       <div className="text-center">
         <img src='/pizza.png' alt='pizza' className="max-h-auto max-h-24 block mx-auto" />
       </div>

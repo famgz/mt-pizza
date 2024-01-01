@@ -52,3 +52,7 @@ div.tabs > * {
 div.tabs > *.active {
   @apply bg-primary text-white;
 }
+
+.card {
+  @apply hover:bg-gray-50 hover:shadow-md hover:shadow-black/25 transition-all;
+}

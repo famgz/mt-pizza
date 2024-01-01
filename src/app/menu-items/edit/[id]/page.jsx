@@ -14,7 +14,7 @@ export default function EditMenuItemPage() {
   const { id } = useParams();
   const { loading, data } = useProfile();
 
-  const [menuItem, setMenuItem] = useState(null)
+  const [menuItem, setMenuItem] = useState(null);
 
   const [redirectToItems, setRedirectToItems] = useState(false);
 
@@ -29,7 +29,7 @@ export default function EditMenuItemPage() {
 
   async function handleFormSubmit(ev, data) {
     ev.preventDefault();
-    data = {...data, _id:id };
+    data = { ...data, _id: id };
     const savingPromise = new Promise(async (resolve, reject) => {
       const response = await fetch('/api/menu-items', {
         method: 'PUT',
@@ -49,6 +49,24 @@ export default function EditMenuItemPage() {
     setRedirectToItems(true);
   }
 
+  async function handleDeleteClick() {
+    const promise = new Promise(async (resolve, reject) => {
+      const response = await fetch('/api/menu-items?_id=' + id, {
+        method: 'DELETE',
+      });
+      if(response.ok)resolve()
+      else reject()
+    });
+
+    await toast.promise(promise, {
+      loading: 'Deleting...',
+      success: 'Deleted',
+      error: 'Erroe'
+    })
+
+    setRedirectToItems(true);
+  }
+
   if (redirectToItems) return redirect('/menu-items');
 
   if (loading) return 'Loading user info...';
@@ -63,8 +81,12 @@ export default function EditMenuItemPage() {
           <span>Show all menu items</span>
         </Link>
       </div>
-      <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit}/>
-      
+      <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit} />
+      <div className='max-w-md mx-auto mt-4'>
+        <div className='max-w-xs ml-auto pl-4'>
+          <button onClick={handleDeleteClick}>Delete this menu item</button>
+        </div>
+      </div>
     </section>
   );
 }

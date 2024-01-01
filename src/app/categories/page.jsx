@@ -37,7 +37,7 @@ export default function CategoriesPage() {
       });
       fetchCategories();
       setCategoryName('');
-      setEditedCategory(null)
+      setEditedCategory(null);
       if (response.ok) resolve();
       else reject();
     });
@@ -49,6 +49,24 @@ export default function CategoriesPage() {
       success: editedCategory ? 'Category updated' : 'Category created',
       error: 'Error, sorry',
     });
+  }
+
+  async function handleDeleteClick(_id) {
+    const promise = new Promise(async (resolve, reject) => {
+      const response = await fetch('/api/categories?_id=' + _id, {
+        method: 'DELETE',
+      });
+      if (response.ok) resolve();
+      else reject();
+    });
+
+    await toast.promise(promise, {
+      loading: 'Deleting...',
+      success: 'Deleted',
+      error: 'Error',
+    });
+
+    fetchCategories();
   }
 
   if (profileLoading) return 'Loading user info...';
@@ -74,27 +92,47 @@ export default function CategoriesPage() {
               onChange={(ev) => setCategoryName(ev.target.value)}
             />
           </div>
-          <div className='pb-3'>
-            <button className='border border-primary' type='submit'>
+          <div className='pb-3 flex gap-2'>
+            <button className='border border-primary px-4' type='submit'>
               {editedCategory ? 'Update' : 'Create'}
+            </button>
+            <button
+            className='px-4'
+              type='button'
+              onClick={() => {
+                setCategoryName('');
+                setEditedCategory(null);
+              }}
+            >
+              Cancel
             </button>
           </div>
         </div>
       </form>
       <div>
-        <h2 className='ml-2 mt-8 text-sm text-gray-500'>Edit category:</h2>
+        <h2 className='ml-2 mt-8 text-sm text-gray-500'>Categories:</h2>
         {categories?.length > 0 &&
           categories.map((c) => (
-            <button
+            <div
               key={c._id}
-              onClick={() => {
-                setEditedCategory(c);
-                setCategoryName(c.name);
-              }}
-              className='rounded-xl py-2 px-4 flex gap-1 cursor-pointer mb-1'
+              className='bg-gray-100 rounded-xl py-2 px-4 flex gap-1 mb-1 items-center'
             >
-              <span>{c.name}</span>
-            </button>
+              <div className='grow'>{c.name}</div>
+              <div className='flex gap-1'>
+                <button
+                  onClick={() => {
+                    setEditedCategory(c);
+                    setCategoryName(c.name);
+                  }}
+                  type='button'
+                >
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteClick(c._id)} type='button'>
+                  Delete
+                </button>
+              </div>
+            </div>
           ))}
       </div>
     </section>
