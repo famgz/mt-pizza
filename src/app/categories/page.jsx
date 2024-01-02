@@ -2,14 +2,14 @@
 
 import UserTabs from '@/components/layout/UserTabs';
 import { useEffect, useState } from 'react';
-import { useProfile } from '@/components/UseProfile';
+import { UseProfile } from '@/components/UseProfile';
 import toast from 'react-hot-toast';
 import DeleteButton from '@/components/DeleteButton';
 
 export default function CategoriesPage() {
   const [categoryName, setCategoryName] = useState('');
   const [categories, setCategories] = useState([]);
-  const { loading: profileLoading, data: profileData } = useProfile();
+  const { loading, data } = UseProfile();
   const [editedCategory, setEditedCategory] = useState(null);
 
   useEffect(() => {
@@ -70,8 +70,8 @@ export default function CategoriesPage() {
     fetchCategories();
   }
 
-  if (profileLoading) return 'Loading user info...';
-  if (profileData.admin) return 'Not an admin';
+  if (loading) return 'Loading user info...';
+  if (!data.admin) return 'Not an admin';
 
   return (
     <div className='mt-8'>

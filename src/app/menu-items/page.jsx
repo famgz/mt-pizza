@@ -1,6 +1,6 @@
 'use client';
 
-import { useProfile } from '@/components/UseProfile';
+import { UseProfile } from '@/components/UseProfile';
 import UserTabs from '@/components/layout/UserTabs';
 import Right from '@/icons/Right';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function MenuItemsPage(params) {
-  const { loading, data } = useProfile();
+  const { loading, data } = UseProfile();
   const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function MenuItemsPage(params) {
   }, []);
 
   if (loading) return 'Loading user info...';
-  if (data.admin) return 'Not an admin';
+  if (!data.admin) return 'Not an admin';
 
   return (
     <div className='mt-8'>

@@ -38,8 +38,6 @@ export default function EditableImage({ link, setLink }) {
     }
   }
 
-  console.log(link)
-
   return (
     <>
       {link && (

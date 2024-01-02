@@ -3,7 +3,7 @@
 import EditableImage from '@/components/layout/EditableImage';
 import UserTabs from '@/components/layout/UserTabs';
 import MenuItemForm from '@/components/layout/MenuItemForm';
-import { useProfile } from '@/components/UseProfile';
+import { UseProfile } from '@/components/UseProfile';
 import Left from '@/icons/Left';
 import Link from 'next/link';
 import { redirect, useParams } from 'next/navigation';
@@ -13,7 +13,7 @@ import DeleteButton from '@/components/DeleteButton';
 
 export default function EditMenuItemPage() {
   const { id } = useParams();
-  const { loading, data } = useProfile();
+  const { loading, data } = UseProfile();
 
   const [menuItem, setMenuItem] = useState(null);
 
@@ -71,11 +71,11 @@ export default function EditMenuItemPage() {
   if (redirectToItems) return redirect('/menu-items');
 
   if (loading) return 'Loading user info...';
-  if (data.admin) return 'Not an admin';
+  if (!data.admin) return 'Not an admin';
 
   return (
     <div className='mt-8'>
-      <UserTabs isAdmin={true} />
+      <UserTabs isAdmin={data.admin} />
       <section className='page-content'>
         <div>
           <Link href={'/menu-items'} className='button'>

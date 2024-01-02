@@ -2,7 +2,7 @@
 
 import MenuItemForm from '@/components/layout/MenuItemForm';
 import UserTabs from '@/components/layout/UserTabs';
-import { useProfile } from '@/components/UseProfile';
+import { UseProfile } from '@/components/UseProfile';
 import Left from '@/icons/Left';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -10,7 +10,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 export default function NewMenuItemPage() {
-  const { loading, data } = useProfile();
+  const { loading, data } = UseProfile();
 
   const [redirectToItems, setRedirectToItems] = useState(false);
 
@@ -38,7 +38,7 @@ export default function NewMenuItemPage() {
   if (redirectToItems) return redirect('/menu-items');
 
   if (loading) return 'Loading user info...';
-  if (data.admin) return 'Not an admin';
+  if (!data.admin) return 'Not an admin';
 
   return (
     <div className='mt-8'>

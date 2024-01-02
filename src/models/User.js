@@ -8,6 +8,7 @@ const UserSchema = new Schema(
       type: String,
     },
     image: { type: String },
+    // * fields below were transfered to UserInfo model
     // phone: { type: String },
     // streetAddress: { type: String },
     // postalCode: { type: String },

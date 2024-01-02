@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "exclude": ["node_modules"],
-    
+
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"]
 }
