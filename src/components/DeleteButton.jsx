@@ -3,6 +3,7 @@ import { useState } from 'react';
 export default function DeleteButton({ label, onDelete }) {
   const [showConfirm, setShowConfirm] = useState(false);
 
+  // delete confirmation modal
   if (showConfirm) {
     return (
       <div className='fixed bg-black/80 inset-0 flex items-center h-full justify-center'>
