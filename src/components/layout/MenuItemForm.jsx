@@ -8,11 +8,11 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
   const [image, setImage] = useState(menuItem?.image || '');
   const [name, setName] = useState(menuItem?.name || '');
   const [description, setDescription] = useState(menuItem?.description || '');
-  const [basePrice, setBasePrice] = useState(menuItem?.basePrice || '');
+  const [basePrice, setBasePrice] = useState(menuItem?.basePrice || null);
   const [sizes, setSizes] = useState(menuItem?.sizes || []);
   const [extraIngredients, setExtraIngredients] = useState(
     menuItem?.extraIngredients || []
-    );
+  );
   const [category, setCategory] = useState(menuItem?.category || '');
   const [categories, setCategories] = useState([]);
 
@@ -24,7 +24,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
 
   return (
     <form
-      onSubmit={(ev) =>
+      onSubmit={(ev) => {
         onSubmit(ev, {
           image,
           name,
@@ -33,8 +33,8 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           sizes,
           extraIngredients,
           category,
-        })
-      }
+        });
+      }}
       className='mt-8 mx-auto'
     >
       <div
@@ -42,11 +42,15 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
         style={{ gridTemplateColumns: '.3fr .7fr' }}
       >
         <div>
-          <EditableImage link={image || '/default-image.jpg'} setLink={setImage} />
+          <EditableImage
+            link={image || '/default-image.jpg'}
+            setLink={setImage}
+          />
         </div>
         <div className='grow'>
           <label>Item name</label>
           <input
+            required={true}
             value={name}
             onChange={(ev) => setName(ev.target.value)}
             type='text'
@@ -55,14 +59,25 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           <label>Description</label>
           <input
             value={description}
+            required={true}
             onChange={(ev) => setDescription(ev.target.value)}
             type='text'
           />
 
           <label>Category</label>
-          <select value={category} onChange={ev => setCategory(ev.target.value)}>
+          <select
+          value={category}
+            required={true}
+            defaultValue=''
+            onChange={(ev) => {
+              setCategory(ev.target.value);
+            }}
+          >
+            <option value='' disabled='true' selected='true'>
+              Select an category
+            </option>
             {categories?.length > 0 &&
-              categories.map((c) => (
+              categories.map((c, i) => (
                 <option key={c._id} value={c._id}>
                   {c.name}
                 </option>
@@ -71,9 +86,12 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
 
           <label>Base Price</label>
           <input
+            required={true}
             value={basePrice}
-            onChange={(ev) => setBasePrice(ev.target.value)}
-            type='text'
+            onChange={(ev) => {
+              setBasePrice(ev.target.value);
+            }}
+            type='number'
           />
 
           <MenuItemPriceProps name={'size'} props={sizes} setProps={setSizes} />

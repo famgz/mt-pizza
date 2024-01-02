@@ -1,15 +1,15 @@
-import Header from '@/components/layout/Header';
 import Hero from '@/components/layout/Hero';
 import HomeMenu from '@/components/layout/HomeMenu';
 import SectionHeaders from '@/components/layout/SectionHeaders';
 
 export default function Home() {
+
   return (
     <>
       <Hero />
       <HomeMenu />
 
-      <section className='text-center my-16'>
+      <section id='about' className='text-center my-16'>
         <SectionHeaders subHeader={'Our story'} mainHeader={'About us'} />
         <div className='page-content flex flex-col gap-4 text-gray-500'>
           <p>
@@ -30,7 +30,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='text-center my-8'>
+      <section id='contact' className='text-center my-8'>
         <SectionHeaders
           subHeader={"Don't hesitate"}
           mainHeader={'Contact us'}

@@ -11,6 +11,7 @@ select,
 input[type='email'],
 input[type='password'],
 input[type='text'],
+input[type='number'],
 input[type='tel'] {
   @apply block w-full mb-3 rounded-xl;
   @apply border p-2 border-gray-300 bg-gray-100;
@@ -19,6 +20,7 @@ input[type='tel'] {
 input[type='email']:disabled,
 input[type='password']:disabled,
 input[type='text']:disabled,
+input[type='number']:disabled,
 input[type='tel']:disabled {
   @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500;
 }

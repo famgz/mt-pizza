@@ -1,15 +1,15 @@
 import mongoose, { Schema, model, models } from 'mongoose';
 
 const ExtraPriceSchema = new Schema({
-  name: String,
+  name: { type: String, trim: true },
   price: Number,
 });
 
 const MenuItemSchema = new Schema(
   {
-    image: { type: String },
-    name: { type: String },
-    description: { type: String },
+    image: { type: String, trim: true },
+    name: { type: String, trim: true },
+    description: { type: String, trim: true },
     category: { type: mongoose.Types.ObjectId },
     basePrice: { type: Number },
     sizes: { type: [ExtraPriceSchema] },

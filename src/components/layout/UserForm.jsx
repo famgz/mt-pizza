@@ -61,7 +61,7 @@ export default function UserForm({ user }) {
       <div>
         <div className='flex flex-col p-2 rounded-lg relative max-w-[200px]'>
           <EditableImage
-            link={image || '/default-profile.jpg'}
+            link={image}
             setLink={setImage}
           />
         </div>

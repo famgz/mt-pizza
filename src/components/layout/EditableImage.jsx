@@ -40,17 +40,17 @@ export default function EditableImage({ link, setLink }) {
 
   return (
     <>
-      {link && (
-        <Image
-          className='rounded-lg w-full h-full mb-1'
-          src={link}
-          width={250}
-          height={250}
-          alt=''
-        />
-      )}
+      <Image
+        className='rounded-lg w-full h-full mb-1'
+        src={link || '/default-profile.jpg'}
+        width={250}
+        height={250}
+        alt=''
+      />
       {!link && (
-        <div className='text-center bg-gray-200 p-4 text-gray-500 rounded-lg mb-1'>No image</div>
+        <span className='text-center mb-1'>
+          No image
+        </span>
       )}
       <label className='m-0'>
         <input type='file' className='hidden' onChange={handleFileChange} />

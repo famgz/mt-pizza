@@ -2,12 +2,12 @@ import { Schema, models, model } from 'mongoose';
 
 const UserSchema = new Schema(
   {
-    name: { type: String },
-    email: { type: String, required: true, unique: true },
+    name: { type: String, trim: true },
+    email: { type: String, required: true, unique: true, trim: true },
     password: {
       type: String,
     },
-    image: { type: String },
+    image: { type: String, trim: true },
     // * fields below were transfered to UserInfo model
     // phone: { type: String },
     // streetAddress: { type: String },
