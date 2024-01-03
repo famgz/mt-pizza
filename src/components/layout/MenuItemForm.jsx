@@ -57,11 +57,12 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           />
 
           <label>Description</label>
-          <input
+          <textarea
             value={description}
             required={true}
             onChange={(ev) => setDescription(ev.target.value)}
-            type='text'
+            rows={4}
+            className='max-h-[200px] h-auto'
           />
 
           <label>Category</label>
