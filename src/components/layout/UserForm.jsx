@@ -1,6 +1,7 @@
 'use client';
 
 import EditableImage from '@/components/layout/EditableImage';
+import UserAddressInputs from '@/components/layout/UserAddressInputs';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { UseProfile } from '../UseProfile';
@@ -18,11 +19,31 @@ export default function UserForm({ user }) {
   const [country, setCountry] = useState(user?.country || '');
   const [admin, setAdmin] = useState(user?.admin || false);
 
-  const isUserLoggedIn = loggedInUserData.email === user.email
+  const isUserLoggedIn = loggedInUserData.email === user.email;
 
-  useEffect(()=>{
+  useEffect(() => {}, []);
 
-  },[])
+  function handleAddressChange(propName, value) {
+    switch (propName) {
+      case 'phone':
+        setPhone(value);
+        break
+      case 'streetAddress':
+        setStreetAddress(value);
+        break
+      case 'postalCode':
+        setPostalCode(value);
+        break
+      case 'city':
+        setCity(value);
+        break
+      case 'country':
+        setCountry(value);
+        break
+      default:
+        return;
+    }
+  }
 
   async function handleSaveButtonClick(ev) {
     ev.preventDefault();
@@ -60,16 +81,10 @@ export default function UserForm({ user }) {
     <div className='flex gap-4'>
       <div>
         <div className='flex flex-col p-2 rounded-lg relative max-w-[200px]'>
-          <EditableImage
-            link={image}
-            setLink={setImage}
-          />
+          <EditableImage link={image} setLink={setImage} />
         </div>
       </div>
-      <form
-        className='grow'
-        onSubmit={handleSaveButtonClick}
-      >
+      <form className='grow' onSubmit={handleSaveButtonClick}>
         <label>First and last name</label>
         <input
           type='text'
@@ -79,49 +94,10 @@ export default function UserForm({ user }) {
         />
         <label>Email</label>
         <input type='email' disabled value={user.email} placeholder='Email' />
-        <label>Phone number</label>
-        <input
-          value={phone}
-          onChange={(ev) => setPhone(ev.target.value)}
-          type='tel'
-          placeholder='Phone number'
-        />
-        <label>Street address</label>
-        <input
-          value={streetAddress}
-          onChange={(ev) => setStreetAddress(ev.target.value)}
-          type='text'
-          placeholder='Street address'
-        />
-        <div className='flex gap-2'>
-          <div className='grow'>
-            <label>Postal code</label>
-            <input
-              style={{ marginTop: 0 }}
-              className='my-0'
-              value={postalCode}
-              onChange={(ev) => setPostalCode(ev.target.value)}
-              type='text'
-              placeholder='Postal code'
-            />
-          </div>
-          <div className='grow'>
-            <label>City</label>
-            <input
-              style={{ marginTop: 0 }}
-              value={city}
-              onChange={(ev) => setCity(ev.target.value)}
-              type='text'
-              placeholder='City'
-            />
-          </div>
-        </div>
-        <label>Country</label>
-        <input
-          value={country}
-          onChange={(ev) => setCountry(ev.target.value)}
-          type='text'
-          placeholder='Country'
+
+        <UserAddressInputs
+          addressPops={{ phone, streetAddress, postalCode, city, country }}
+          setAddressProp={handleAddressChange}
         />
         <div>
           <label
@@ -139,7 +115,9 @@ export default function UserForm({ user }) {
             />
             <span className='text-sm'>Admin</span>
             {isUserLoggedIn && (
-              <span className='ml-1'>(You cannot change your own admin status)</span>
+              <span className='ml-1'>
+                (You cannot change your own admin status)
+              </span>
             )}
           </label>
         </div>
