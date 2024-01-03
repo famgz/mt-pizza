@@ -11,13 +11,16 @@ import UserAddressInputs from '@/components/layout/UserAddressInputs';
 import Trash from '@/icons/Trash';
 import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function CartPage() {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
   const [address, setAddress] = useState({});
   const { data: profileData } = UseProfile();
 
-  const total = cartTotalPrice(cartProducts);
+  const subTotal = cartTotalPrice(cartProducts);
+  const deliveryFee = 5;
+  const total = subTotal + deliveryFee;
 
   // populate user address inputs at loading
   useEffect(() => {
@@ -30,6 +33,36 @@ export default function CartPage() {
       ...prevAddress,
       [propName]: value,
     }));
+  }
+
+  async function proceedToCheckout(ev) {
+    ev.preventDefault();
+    // get address and shopping cart products
+    const promise = new Promise((resolve, reject) => {
+      fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          address,
+          cartProducts,
+        }),
+      }).then(async (response) => {
+        if (response.ok) {
+          resolve();
+          // redirect to stripe
+          const link = await response.json();
+          window.location = link;
+        } else {
+          reject()
+        }
+      });
+    });
+
+    await toast.promise(promise, {
+      loading: 'Preparing your order...',
+      success: 'Redirecting to payment',
+      error: 'Something went wrong... Please try again later'
+    })
   }
 
   return (
@@ -86,23 +119,38 @@ export default function CartPage() {
               </div>
             ))
           )}
-          <div className='py-2 text-right pr-14'>
-            <span className='text-gray-500'>Subtotal:</span>
-            <span className='text-lg font-semibold pl-2'>${total}</span>
+
+          <div className='flex justify-end items-center py-2 pr-14'>
+            <div className='text-gray-500 text-lg'>
+              Subtotal: <br />
+              Delivery: <br />
+              Total:
+            </div>
+            <span className='text-lg font-semibold pl-2 text-right'>
+              ${subTotal} <br />${deliveryFee} <br />${total} <br />
+            </span>
           </div>
+
+          {/* <div className='py-2 text-right pr-14'>
+            <span className='text-gray-500'>Delivery fee:</span>
+            <span className='text-lg font-semibold pl-2'>${deliveryFee}</span>
+          </div> */}
         </div>
+
         {/* Right panel (Checkout form) */}
         <div>
           <div className='bg-gray-200 p-4 rounded-lg'>
             <h2 className='font-bold'>Checkout</h2>
-            <form className='mt-2'>
+            <form onSubmit={proceedToCheckout} className='mt-2'>
               <div className='grow'>
                 <UserAddressInputs
                   addressPops={address}
                   setAddressProp={handleAddressChange}
                 />
               </div>
-              <button className='mt-6' type='submit'>Pay ${total}</button>
+              <button className='mt-6' type='submit'>
+                Pay ${subTotal + deliveryFee}
+              </button>
             </form>
           </div>
         </div>
