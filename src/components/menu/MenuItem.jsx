@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../AppContext';
 import MenuItemTile from '@/components/menu/MenuItemTile';
 import toast from 'react-hot-toast';
+import FlyingButton from 'react-flying-item';
 
 export default function MenuItem(menuItem) {
   const {
@@ -20,17 +21,18 @@ export default function MenuItem(menuItem) {
   const [selectedSize, setSelectedSize] = useState(sizes?.[0] || null);
   const [selectedExtras, setSelectedExtras] = useState([]);
 
-  function handleAddToCartButtonClick() {
+  async function handleAddToCartButtonClick() {
     const hasOptions = sizes.length > 0 || extraIngredients.length > 0;
-    // items with extra options, go to modal
+    // items with extra options, open popup
     if (hasOptions && !showPopup) {
       setShowPopup(true);
-      return
+      return;
     }
-    // items ready to the cart
+    // items are ready to the cart
     addToCart(menuItem, selectedSize, selectedExtras);
+    await new Promise((resolve) => setTimeout(resolve, 700));  // wait a little so the animation won't break
     setShowPopup(false);
-    toast.success('Added to cart!');
+    // toast.success('Added to cart!');
   }
 
   function handleExtraItemClick(ev, extra) {
@@ -58,7 +60,7 @@ export default function MenuItem(menuItem) {
     <>
       {/* Items with no extra options */}
       <MenuItemTile onAddToCart={handleAddToCartButtonClick} {...menuItem} />
-      
+
       {/* Items with extra options */}
       {showPopup && (
         <div
@@ -67,7 +69,7 @@ export default function MenuItem(menuItem) {
         >
           <div
             onClick={(ev) => ev.stopPropagation()}
-            className='bg-white my-8 p-2 rounded-lg max-w-md'
+            className='bg-white my-8 p-2 pb-4 rounded-lg max-w-md'
           >
             <div
               className='overflow-y-scroll p-2'
@@ -131,21 +133,30 @@ export default function MenuItem(menuItem) {
                   ))}
                 </div>
               )}
-              <div className='flex gap-2 mt-4 sticky bottom-0 bg-white'>
-                <button
-                  className='w-auto'
-                  type='button'
-                  onClick={() => setShowPopup(false)}
-                >
-                  Cancel
-                </button>
-                <button
+              <div className='flex gap-2 mt-4 sticky bottom-0 bg-white items-end'>
+                <div>
+                  <button
+                    className='w-auto rounded-full'
+                    type='button'
+                    onClick={() => setShowPopup(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+
+                <div
                   onClick={handleAddToCartButtonClick}
-                  className='primary grow'
-                  type='button'
+                  className='flying-button-parent mt-4 grow'
                 >
-                  Add to cart ${selectedPrice}
-                </button>
+                  <FlyingButton
+                    targetTop={'5%'}
+                    targetLeft={'95%'}
+                    src={image}
+                    animationDuration={0.6}
+                  >
+                    <span>Add to cart ${selectedPrice}</span>
+                  </FlyingButton>
+                </div>
               </div>
             </div>
           </div>

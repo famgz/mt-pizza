@@ -68,3 +68,7 @@ div.tabs > *.active {
 .page-content {
   @apply max-w-3xl mx-auto mt-8;
 }
+
+.flying-button-parent button {
+  @apply border-primary bg-primary text-white rounded-full;
+}
