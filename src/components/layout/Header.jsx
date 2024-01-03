@@ -56,8 +56,10 @@ export default function Header(params) {
           </>
         )}
         <Link className='flex relative' href={'/cart'}>
-          <ShoppingCart size={30} /> 
-          <span className='absolute -top-2 -right-3 bg-primary text-white text-xs py-1 px-2 rounded-full leading-3'>{cartProducts.length}</span>
+          <ShoppingCart size={30} />
+          <span className='absolute -top-2 -right-3 bg-primary text-white text-xs py-1 px-2 rounded-full leading-3'>
+            {cartProducts.length}
+          </span>
         </Link>
       </nav>
     </header>
