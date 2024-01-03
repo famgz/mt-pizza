@@ -24,7 +24,10 @@ export async function POST(req) {
     paid: false,
   });
 
-  // items must be checked with the ones in DataBase because the form POST might be modified (hacked) by the user
+  const orderId = orderDoc._id.toString()
+
+  // items must be checked with the ones in DataBase
+  // because the form POST might be modified (hacked) by the user
   const stripeLineItems = [];
   for (const cartProduct of cartProducts) {
     const productInfo = await MenuItem.findById(cartProduct._id);
@@ -46,8 +49,6 @@ export async function POST(req) {
       }
     }
 
-    // let productPrice = cartProductTotalPrice(productInfo) * 100
-
     stripeLineItems.push({
       quantity: 1,
       price_data: {
@@ -64,9 +65,12 @@ export async function POST(req) {
     line_items: stripeLineItems,
     mode: 'payment',
     customer_email: userEmail,
-    success_url: process.env.NEXTAUTH_URL + 'cart?success=1',
+    success_url: process.env.NEXTAUTH_URL + 'orders/' + orderId + '?clear-cart=1', // + 'cart?success=1',
     cancel_url: process.env.NEXTAUTH_URL + 'cart?canceled=1',
-    metadata: { orderId: orderDoc._id },
+    metadata: { orderId: orderId },
+    payment_intent_data: {
+      metadata: { orderId: orderId },
+    },
     shipping_options: [
       {
         shipping_rate_data: {
