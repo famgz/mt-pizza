@@ -1,11 +1,11 @@
-export default function ShoppingCart({ size = 24 }) {
+export default function ShoppingCart({ size = 24, stroke='currentColor' }) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'
       strokeWidth={2}
-      stroke='currentColor'
+      stroke={stroke}
       className=''
       height={size}
       width={size}

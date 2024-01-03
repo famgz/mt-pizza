@@ -10,8 +10,10 @@ import SectionHeaders from '@/components/layout/SectionHeaders';
 import UserAddressInputs from '@/components/layout/UserAddressInputs';
 import Trash from '@/icons/Trash';
 import Image from 'next/image';
+import ShoppingCart from '@/icons/ShoppingCart';
 import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 export default function CartPage() {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
@@ -21,6 +23,14 @@ export default function CartPage() {
   const subTotal = cartTotalPrice(cartProducts);
   const deliveryFee = 5;
   const total = subTotal + deliveryFee;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.location.href.includes('canceled=1')) {
+        toast.error('Payment failed 🙁');
+      }
+    }
+  }, []);
 
   // populate user address inputs at loading
   useEffect(() => {
@@ -53,7 +63,7 @@ export default function CartPage() {
           const link = await response.json();
           window.location = link;
         } else {
-          reject()
+          reject();
         }
       });
     });
@@ -61,8 +71,34 @@ export default function CartPage() {
     await toast.promise(promise, {
       loading: 'Preparing your order...',
       success: 'Redirecting to payment',
-      error: 'Something went wrong... Please try again later'
-    })
+      error: 'Something went wrong... Please try again later',
+    });
+  }
+
+  // No products selected
+  if (cartProducts?.length === 0) {
+    return (
+      <div className='mt-8'>
+        <section className='flex flex-col page-content items-center text-center text-gray-500'>
+          <div className='mt-8'>
+            <SectionHeaders mainHeader='Cart' />
+          </div>
+          <div className='mt-8'>
+            <ShoppingCart size={200} stroke='#aaa' />
+          </div>
+          <p className='mt-6 text-2xl'>Your shopping cart is empty &nbsp;:(</p>
+          <p className='mt-6 mb-8 text-2xl'>
+            Select some of our delicious options!
+          </p>
+          <Link
+            className='bg-primary rounded-full text-white text-xl font-bold px-8 py-2'
+            href='/menu'
+          >
+            Go to Menu
+          </Link>
+        </section>
+      </div>
+    );
   }
 
   return (
@@ -120,7 +156,7 @@ export default function CartPage() {
             ))
           )}
 
-          <div className='flex justify-end items-center py-2 pr-14'>
+          <div className='flex justify-end items-center gap-4 py-2 pr-14'>
             <div className='text-gray-500 text-lg'>
               Subtotal: <br />
               Delivery: <br />
@@ -130,11 +166,6 @@ export default function CartPage() {
               ${subTotal} <br />${deliveryFee} <br />${total} <br />
             </span>
           </div>
-
-          {/* <div className='py-2 text-right pr-14'>
-            <span className='text-gray-500'>Delivery fee:</span>
-            <span className='text-lg font-semibold pl-2'>${deliveryFee}</span>
-          </div> */}
         </div>
 
         {/* Right panel (Checkout form) */}
@@ -149,7 +180,7 @@ export default function CartPage() {
                 />
               </div>
               <button className='mt-6' type='submit'>
-                Pay ${subTotal + deliveryFee}
+                Pay&nbsp; ${subTotal + deliveryFee}
               </button>
             </form>
           </div>
