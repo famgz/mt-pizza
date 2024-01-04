@@ -1,4 +1,4 @@
-export default function UserAddressInputs({ addressPops, setAddressProp }) {
+export default function UserAddressInputs({ addressPops, setAddressProp, disabled=false, required=false }) {
   const { phone, streetAddress, postalCode, city, country } = addressPops;
 
   return (
@@ -6,6 +6,8 @@ export default function UserAddressInputs({ addressPops, setAddressProp }) {
       <label>Phone number</label>
       <input
         value={phone}
+        disabled={disabled}
+        required={required}
         onChange={(ev) => setAddressProp('phone', ev.target.value)}
         type='tel'
         placeholder='Phone number'
@@ -13,6 +15,8 @@ export default function UserAddressInputs({ addressPops, setAddressProp }) {
       <label>Street address</label>
       <input
         value={streetAddress}
+        disabled={disabled}
+        required={required}
         onChange={(ev) => setAddressProp('streetAddress', ev.target.value)}
         type='text'
         placeholder='Street address'
@@ -24,6 +28,8 @@ export default function UserAddressInputs({ addressPops, setAddressProp }) {
             style={{ marginTop: 0 }}
             className='my-0'
             value={postalCode}
+            disabled={disabled}
+            required={required}
             onChange={(ev) => setAddressProp('postalCode', ev.target.value)}
             type='text'
             placeholder='Postal code'
@@ -34,6 +40,8 @@ export default function UserAddressInputs({ addressPops, setAddressProp }) {
           <input
             style={{ marginTop: 0 }}
             value={city}
+            disabled={disabled}
+            required={required}
             onChange={(ev) => setAddressProp('city', ev.target.value)}
             type='text'
             placeholder='City'
@@ -43,6 +51,8 @@ export default function UserAddressInputs({ addressPops, setAddressProp }) {
       <label>Country</label>
       <input
         value={country}
+        disabled={disabled}
+        required={required}
         onChange={(ev) => setAddressProp('country', ev.target.value)}
         type='text'
         placeholder='Country'

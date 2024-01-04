@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 export const CartContext = createContext({});
 
 export function cartTotalPrice(cartProducts) {
+  if (!cartProducts) return 0
   let total = 0
   for(const product of cartProducts) {
     total += cartProductTotalPrice(product)
