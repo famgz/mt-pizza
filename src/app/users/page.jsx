@@ -16,8 +16,9 @@ export default function UsersPage() {
     });
   }, []);
 
-  if (loading) return 'Loading user info...';
-  if (!data.admin) return 'Not an admin';
+  if (loading)
+    return <div className='loading-status'>Loading user info...</div>;
+  if (!data.admin) return <div className='loading-status'>Not an admin</div>;
 
   return (
     <div className='mt-8'>
@@ -37,9 +38,11 @@ export default function UsersPage() {
                   <span className='text-gray-400'>{user.email}</span>
                 </div>
                 <div className='flex gap-1'>
-                  <Link className='button' href={'/users/' + user._id}>Edit</Link>
+                  <Link className='button' href={'/users/' + user._id}>
+                    Edit
+                  </Link>
                   <DeleteButton
-                    label='Delete'
+                    label=''
                     onDelete={() => handleDeleteClick(user._id)}
                   />
                 </div>

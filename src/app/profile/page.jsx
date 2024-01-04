@@ -27,7 +27,7 @@ export default function ProfilePage() {
   }, [session, status]);
 
   if (status === 'loading' || !profileFetched) {
-    return 'Loading...';
+    return <div className='loading-status'>Loading user profile...</div>;
   }
 
   if (status === 'unauthenticated') {

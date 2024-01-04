@@ -70,8 +70,9 @@ export default function CategoriesPage() {
     fetchCategories();
   }
 
-  if (loading) return 'Loading user info...';
-  if (!data.admin) return 'Not an admin';
+  if (loading)
+    return <div className='loading-status'>Loading categories...</div>;
+  if (!data.admin) return <div className='loading-status'>Not an admin</div>;
 
   return (
     <div className='mt-8'>
@@ -131,7 +132,7 @@ export default function CategoriesPage() {
                     Edit
                   </button>
                   <DeleteButton
-                    label='Delete'
+                    label=''
                     onDelete={() => handleDeleteClick(c._id)}
                   />
                 </div>

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function MenuItemsPage(params) {
+export default function MenuItemsPage() {
   const { loading, data } = UseProfile();
   const [menuItems, setMenuItems] = useState([]);
 
@@ -19,12 +19,13 @@ export default function MenuItemsPage(params) {
     );
   }, []);
 
-  if (loading) return 'Loading user info...';
-  if (!data.admin) return 'Not an admin';
+  if (loading)
+    return <div className='loading-status'>Loading menu items...</div>;
+  if (!data.admin) return <div className='loading-status'>Not an admin</div>;
 
   return (
     <div className='mt-8'>
-      <UserTabs isAdmin={true} />
+      <UserTabs isAdmin={!!data?.admin} />
       <section className='page-content'>
         <div className='mt-8'>
           <Link className='button flex' href={'/menu-items/new'}>
