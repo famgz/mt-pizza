@@ -1,20 +1,9 @@
-export default function Up({ size = 24 }) {
+import IconComponent from '@/icons/IconComponent';
+
+export default function Up({ size, stroke, className }) {
+  const d = 'm4.5 15.75 7.5-7.5 7.5 7.5';
+
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      fill='none'
-      viewBox='0 0 24 24'
-      strokeWidth={1.5}
-      stroke='currentColor'
-      className=''
-      height={size}
-      width={size}
-    >
-      <path
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        d='m4.5 15.75 7.5-7.5 7.5 7.5'
-      />
-    </svg>
+    <IconComponent d={d} size={size} stroke={stroke} className={className} />
   );
 }
