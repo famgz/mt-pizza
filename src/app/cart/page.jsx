@@ -14,6 +14,8 @@ import ShoppingCart from '@/icons/ShoppingCart';
 import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import CartProduct from '@/components/menu/CartProduct';
+import CartPrices from '@/components/menu/CartPrices';
 
 export default function CartPage() {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
@@ -107,7 +109,7 @@ export default function CartPage() {
         <SectionHeaders mainHeader='Cart' />
       </div>
       <div className='grid gap-10 grid-cols-2 mt-8'>
-        {/* Left Panels (items) */}
+        {/* Left Panels - Cart items */}
         <div>
           {cartProducts?.length === 0 ? (
             // No products
@@ -115,60 +117,25 @@ export default function CartPage() {
           ) : (
             // Products
             cartProducts.map((product, index) => (
-              <div key={index} className='flex gap-4 mb-2 border-b py-2'>
-                <div className='w-32'>
-                  <Image
-                    src={product.image}
-                    alt={''}
-                    width={240}
-                    height={240}
-                  />
-                </div>
-                <div className='grow'>
-                  <h3 className='font-bold'>{product.name}</h3>
-                  {product.size && (
-                    <div className='text-sm'>
-                      Size: <span>{product.size.name}</span>
-                    </div>
-                  )}
-                  {product.extras?.length > 0 && (
-                    <div className='text-sm text-gray-500'>
-                      {product.extras.map((extra, index) => (
-                        <div key={index}>
-                          Extra {extra.name} + ${extra.price}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className='flex gap-4 items-center'>
-                  <span className='text-lg font-semibold'>
-                    ${cartProductTotalPrice(product)}
-                  </span>
-                  <button
-                    onClick={() => removeCartProduct(index)}
-                    className='p-2'
-                  >
-                    <Trash />
-                  </button>
-                </div>
-              </div>
+              <CartProduct
+                key={index}
+                product={product}
+                index={index}
+                onRemove={removeCartProduct}
+              />
             ))
           )}
-
-          <div className='flex justify-end items-center gap-4 py-2 pr-14'>
-            <div className='text-gray-500 text-lg'>
-              Subtotal: <br />
-              Delivery: <br />
-              Total:
+          {/* Order Values */}
+          <div className='pr-14'>
+          <CartPrices
+            subTotal={subTotal}
+            deliveryFee={deliveryFee}
+            total={total}
+            />
             </div>
-            <span className='text-lg font-semibold pl-2 text-right'>
-              ${subTotal} <br />${deliveryFee} <br />${total} <br />
-            </span>
-          </div>
         </div>
 
-        {/* Right panel (Checkout form) */}
+        {/* Right panel - Address Checkout form) */}
         <div>
           <div className='bg-gray-200 p-4 rounded-lg'>
             <h2 className='font-bold'>Checkout</h2>
@@ -176,6 +143,7 @@ export default function CartPage() {
               <div className='grow'>
                 <UserAddressInputs
                   addressPops={address}
+                  required={true}
                   setAddressProp={handleAddressChange}
                 />
               </div>
