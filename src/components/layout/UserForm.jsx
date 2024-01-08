@@ -27,19 +27,19 @@ export default function UserForm({ user }) {
     switch (propName) {
       case 'phone':
         setPhone(value);
-        break
+        break;
       case 'streetAddress':
         setStreetAddress(value);
-        break
+        break;
       case 'postalCode':
         setPostalCode(value);
-        break
+        break;
       case 'city':
         setCity(value);
-        break
+        break;
       case 'country':
         setCountry(value);
-        break
+        break;
       default:
         return;
     }
@@ -54,7 +54,7 @@ export default function UserForm({ user }) {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        _id,
+        // _id,
         name,
         // email: user.email,
         admin,
@@ -66,8 +66,11 @@ export default function UserForm({ user }) {
         country,
       }),
     }).then((response) => {
-      if (response.ok) return true;
-      throw new Error('Something went wrong');
+      if (response.ok) {
+        return true;
+      } else {
+        throw new Error('Something went wrong');
+      }
     });
 
     await toast.promise(savingPromise, {

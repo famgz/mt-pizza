@@ -1,9 +1,9 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -15,30 +15,28 @@ export default function RegisterPage() {
   async function handleFormSubmit(ev) {
     ev.preventDefault();
     setCreatingUser(true);
-    setUserCreated(false);
     setError(false);
-    const response = await fetch('/api/register', {
+    setUserCreated(false);
+    const res = await fetch('/api/register', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     });
-
-    if (response.ok) {
+    if (res.ok) {
       setUserCreated(true);
     } else {
       setError(true);
     }
     setCreatingUser(false);
   }
-
   return (
-    <section className='mt-8]'>
+    <section className='mt-8'>
       <h1 className='text-center text-primary text-4xl mb-4'>Register</h1>
       {userCreated && (
         <div className='my-4 text-center'>
-          User created. <br /> Now you can{' '}
+          User created.
+          <br />
+          Now you can{' '}
           <Link className='underline' href={'/login'}>
             Login &raquo;
           </Link>
@@ -46,8 +44,9 @@ export default function RegisterPage() {
       )}
       {error && (
         <div className='my-4 text-center'>
-          An error has occurred. <br />
-          Please try again later.
+          An error has occurred.
+          <br />
+          Please try again later
         </div>
       )}
       <form className='block max-w-xs mx-auto' onSubmit={handleFormSubmit}>
@@ -72,16 +71,17 @@ export default function RegisterPage() {
           or login with provider
         </div>
         <button
-          type='button'
-          onClick={() => signIn('google', { callbackUrl: '/' })}
+          onClick={() =>
+            signIn('google', { callbackUrl: '/', redirect: false })
+          }
           className='flex gap-4 justify-center'
         >
-          <Image src={'/google.png'} alt='' height={24} width={24} />
-          Login with Google
+          <Image src={'/google.png'} alt={''} width={24} height={24} />
+          Login with google
         </button>
-        <div className='text-center my-4 text-gray-500 border-t py-4'>
+        <div className='text-center my-4 text-gray-500 border-t pt-4'>
           Already have an account?{' '}
-          <Link className='underline text-gray-700' href={'/login'}>
+          <Link className='underline' href={'/login'}>
             Login here &raquo;
           </Link>
         </div>

@@ -2,18 +2,30 @@
 
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../AppContext';
 import ShoppingCart from '@/icons/ShoppingCart';
 
 export default function Header(params) {
   const session = useSession();
-  const status = session.status;
+  const status = session?.status;
   const userData = session.data?.user;
-  let userName = userData?.name || userData?.email;
+  const [userName, setUsername] = useState(userData?.name);
   const { cartProducts } = useContext(CartContext);
 
-  if (userName && userName.includes(' ')) userName = userName.split(' ')[0];
+  useEffect(() => {
+    if (!userName) {
+      fetch('/api/profile').then((response) => {
+        response.json().then((data) => {
+          let name = data?.name;
+          if (name && name.includes(' ')) {
+            name = name.split(' ')[0];
+          }
+          setUsername(data?.name || data.email);
+        });
+      });
+    }
+  }, []);
 
   useEffect(() => {
     console.log({ session });
@@ -57,9 +69,11 @@ export default function Header(params) {
         )}
         <Link className='flex relative' href={'/cart'}>
           <ShoppingCart size={30} />
-          <span className='absolute -top-2 -right-3 bg-primary text-white text-xs py-1 px-2 rounded-full leading-3'>
-            {cartProducts.length}
-          </span>
+          {cartProducts?.length > 0 && (
+            <span className='absolute -top-2 -right-3 pt-[3px] font-extrabold bg-primary text-white text-xs h-[21px] w-[21px] items-center text-center rounded-full '>
+              {cartProducts.length}
+            </span>
+          )}
         </Link>
       </nav>
     </header>

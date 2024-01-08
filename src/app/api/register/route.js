@@ -14,5 +14,6 @@ export async function POST(req) {
   body.password = bcrypt.hashSync(pass, salt)
 
   const createdUser = await User.create(body);
+  console.log({createdUser})
   return Response.json(createdUser);
 }

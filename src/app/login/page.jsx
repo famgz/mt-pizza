@@ -10,11 +10,34 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loginInProgress, setLoginInProgress] = useState(false);
 
+  // Login with Google
+  async function logInGoogle() {
+    setLoginInProgress(true);
+    const res = await signIn('google', { callbackUrl: '/', redirect: true });
+    if (res?.status === 200) {
+      console.log('google login ok');
+    } else {
+      console.log('Google Login Error:', res?.error);
+    }
+    setLoginInProgress(false);
+  }
+
+  // Login with user form credentials
   async function handleFormSubmit(ev) {
     ev.preventDefault();
     setLoginInProgress(true);
 
-    await signIn('credentials', { email, password, callbackUrl: '/' });
+    const res = await signIn('credentials', {
+      email,
+      password,
+      callbackUrl: '/',
+      redirect: true,
+    });
+    if (res?.status === 200) {
+      console.log('login ok');
+    } else {
+      console.log('Login Error:', res?.error);
+    }
 
     setLoginInProgress(false);
   }
@@ -48,7 +71,8 @@ export default function LoginPage() {
         </div>
         <button
           type='button'
-          onClick={() => signIn('google', { callbackUrl: '/' })}
+          // onClick={() => signIn('google')}
+          onClick={logInGoogle}
           className='flex gap-4 justify-center'
         >
           <Image src={'/google.png'} alt='' height={24} width={24} />

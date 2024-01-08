@@ -10,19 +10,19 @@ export async function PUT(req) {
   const { _id, name, image, ...otherUserInfo } = data;
 
   let filter = {};
-  // editing someone's profile
   if (_id) {
     filter = { _id };
-  }
-  // editing own profile
-  else {
+  } else {
     const session = await getServerSession(authOptions);
     const email = session.user.email;
     filter = { email };
   }
 
+  const user = await User.findOne(filter);
   await User.updateOne(filter, { name, image });
-  await UserInfo.findOneAndUpdate(filter, otherUserInfo, { upsert: true }); // upset will create the user if not found?
+  await UserInfo.findOneAndUpdate({ email: user.email }, otherUserInfo, {
+    upsert: true,
+  });
 
   return Response.json(true);
 }
@@ -49,7 +49,7 @@ export async function GET(req) {
   }
 
   const user = await User.findOne(filter).lean();
-  const userInfo = await UserInfo.findOne({email:user.email}).lean();
+  const userInfo = await UserInfo.findOne({ email: user.email }).lean();
 
   return Response.json({ ...user, ...userInfo });
 }
