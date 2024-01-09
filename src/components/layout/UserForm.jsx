@@ -101,7 +101,7 @@ export default function UserForm({ user }) {
         <input type='email' disabled defaultValue={user.email} placeholder='Email' />
 
         <UserAddressInputs
-          addressPops={{ phone, streetAddress, postalCode, city, country }}
+          addressProps={{ phone, streetAddress, postalCode, city, country }}
           setAddressProp={handleAddressChange}
         />
         <div>

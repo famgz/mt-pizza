@@ -70,7 +70,7 @@ export default function Header() {
       {/* Mobile Version */}
       <div className='flex md:hidden justify-between'>
         <Link className='text-primary font-extrabold text-2xl' href='/'>
-          ST PIZZA
+          MT PIZZA
         </Link>
         <div className='flex gap-4 items-center'>
           <Link className='flex relative' href={'/cart'}>
@@ -105,7 +105,7 @@ export default function Header() {
       <div className='hidden md:flex items-center justify-between'>
         <nav className='flex items-center gap-8 text-gray-500 font-semibold'>
           <Link className='text-primary font-extrabold text-2xl' href='/'>
-            ST PIZZA
+            MT PIZZA
           </Link>
           <Link href={'/'}>Home</Link>
           <Link href={'/menu'}>Menu</Link>

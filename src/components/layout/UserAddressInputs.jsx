@@ -1,10 +1,10 @@
 export default function UserAddressInputs({
-  addressPops,
+  addressProps,
   setAddressProp,
   disabled = false,
   required = false,
 }) {
-  const { phone, streetAddress, postalCode, city, country } = addressPops;
+  const { phone, streetAddress, postalCode, city, country } = addressProps;
 
   return (
     <>

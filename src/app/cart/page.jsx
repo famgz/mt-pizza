@@ -142,7 +142,7 @@ export default function CartPage() {
             <form onSubmit={proceedToCheckout} className='mt-2'>
               <div className='grow'>
                 <UserAddressInputs
-                  addressPops={address}
+                  addressProps={address}
                   required={true}
                   setAddressProp={handleAddressChange}
                 />

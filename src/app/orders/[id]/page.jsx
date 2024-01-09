@@ -98,7 +98,7 @@ export default function OrderPage(params) {
             {/* Right panel - Address info */}
             <div>
               <div className='bg-gray-200 p-4 rounded-lg'>
-                <UserAddressInput disabled={true} addressPops={order} />
+                <UserAddressInput disabled={true} addressProps={order} />
               </div>
             </div>
           </div>
