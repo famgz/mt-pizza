@@ -58,10 +58,10 @@ export default function MenuItem(menuItem) {
 
   return (
     <>
-      {/* Items with no extra options */}
+      {/* Menu item card */}
       <MenuItemTile onAddToCart={handleAddToCartButtonClick} {...menuItem} />
 
-      {/* Items with extra options */}
+      {/* Menu item extra options popup */}
       {showPopup && (
         <div
           onClick={() => setShowPopup(false)}
@@ -99,7 +99,7 @@ export default function MenuItem(menuItem) {
                       <input
                         type='radio'
                         name='size'
-                        onClick={() => setSelectedSize(size)}
+                        onChange={() => setSelectedSize(size)}
                         checked={selectedSize?.name === size.name}
                       />{' '}
                       {size.name}
@@ -123,7 +123,7 @@ export default function MenuItem(menuItem) {
                       <input
                         type='checkbox'
                         name={extra.name}
-                        onClick={(ev) => handleExtraItemClick(ev, extra)}
+                        onChange={(ev) => handleExtraItemClick(ev, extra)}
                       />
                       Extra {extra.name}
                       <span className='text-gray-900 font-bold'>

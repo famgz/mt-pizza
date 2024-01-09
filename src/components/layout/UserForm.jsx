@@ -81,12 +81,14 @@ export default function UserForm({ user }) {
   }
 
   return (
-    <div className='flex gap-4'>
+    <div className='flex flex-col md:flex-row gap-4'>
+      {/* Profile Image */}
       <div>
-        <div className='flex flex-col p-2 rounded-lg relative max-w-[200px]'>
+        <div className='flex flex-col p-2 rounded-lg relative max-w-[200px] mx-auto'>
           <EditableImage link={image} setLink={setImage} />
         </div>
       </div>
+      {/* Profile form */}
       <form className='grow' onSubmit={handleSaveButtonClick}>
         <label>First and last name</label>
         <input
@@ -96,7 +98,7 @@ export default function UserForm({ user }) {
           onChange={(ev) => setName(ev.target.value)}
         />
         <label>Email</label>
-        <input type='email' disabled value={user.email} placeholder='Email' />
+        <input type='email' disabled defaultValue={user.email} placeholder='Email' />
 
         <UserAddressInputs
           addressPops={{ phone, streetAddress, postalCode, city, country }}

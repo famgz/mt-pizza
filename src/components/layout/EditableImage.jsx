@@ -48,14 +48,12 @@ export default function EditableImage({ link, setLink }) {
         alt=''
       />
       {!link && (
-        <span className='text-center mb-1'>
-          No image
-        </span>
+        <span className='text-center text-gray-500 -mt-8 mb-2'>No image</span>
       )}
       <label className='m-0'>
         <input type='file' className='hidden' onChange={handleFileChange} />
-        <span className='w-full block border border-gray-300 text-center rounded-lg px-2 py-1 cursor-pointer'>
-          Edit
+        <span className='w-full block border border-gray-300 text-center text-base rounded-lg px-2 py-1 cursor-pointer'>
+          {link ? 'Edit image' : 'Upload image'}
         </span>
       </label>
     </>

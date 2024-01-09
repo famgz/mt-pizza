@@ -79,7 +79,8 @@ export default function CategoriesPage() {
       <UserTabs isAdmin={true} />
       <section className='page-content'>
         <form className='mt-8' onSubmit={handleCategorySubmit}>
-          <div className='flex gap-2 items-end'>
+          <div className='flex flex-col gap-0 2xs:flex-row 2xs:items-end 2xs:gap-2'>
+            {/* Edit field */}
             <div className='grow'>
               <label>
                 {editedCategory ? 'Update category' : 'New category name'}
@@ -91,10 +92,12 @@ export default function CategoriesPage() {
               </label>
               <input
                 type='text'
+                className=''
                 value={categoryName}
                 onChange={(ev) => setCategoryName(ev.target.value)}
               />
             </div>
+            {/* Edit buttons */}
             <div className='pb-3 flex gap-2'>
               <button className='border border-primary px-4' type='submit'>
                 {editedCategory ? 'Update' : 'Create'}
@@ -112,6 +115,7 @@ export default function CategoriesPage() {
             </div>
           </div>
         </form>
+        {/* Categories list */}
         <div>
           <h2 className='ml-2 mt-8 text-sm text-gray-500'>Categories:</h2>
           {categories?.length > 0 &&

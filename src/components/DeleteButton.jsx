@@ -33,7 +33,7 @@ export default function DeleteButton({ label, onDelete }) {
   return (
     <button className='items-center p-2' type='button' onClick={() => setShowConfirm(true)}>
       {label}
-      <Trash size={16} />
+      <Trash size={18} />
     </button>
   );
 }

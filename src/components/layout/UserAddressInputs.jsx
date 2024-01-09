@@ -1,11 +1,16 @@
-export default function UserAddressInputs({ addressPops, setAddressProp, disabled=false, required=false }) {
+export default function UserAddressInputs({
+  addressPops,
+  setAddressProp,
+  disabled = false,
+  required = false,
+}) {
   const { phone, streetAddress, postalCode, city, country } = addressPops;
 
   return (
     <>
       <label>Phone number</label>
       <input
-        value={phone}
+        value={phone || ''}
         disabled={disabled}
         required={required}
         onChange={(ev) => setAddressProp('phone', ev.target.value)}
@@ -14,7 +19,7 @@ export default function UserAddressInputs({ addressPops, setAddressProp, disable
       />
       <label>Street address</label>
       <input
-        value={streetAddress}
+        value={streetAddress || ''}
         disabled={disabled}
         required={required}
         onChange={(ev) => setAddressProp('streetAddress', ev.target.value)}
@@ -25,9 +30,9 @@ export default function UserAddressInputs({ addressPops, setAddressProp, disable
         <div className='grow'>
           <label>Postal code</label>
           <input
-            style={{ marginTop: 0 }}
-            className='my-0'
-            value={postalCode}
+            // style={{ marginTop: 0 }}
+            className='my-0 !mt-0'
+            value={postalCode || ''}
             disabled={disabled}
             required={required}
             onChange={(ev) => setAddressProp('postalCode', ev.target.value)}
@@ -38,8 +43,9 @@ export default function UserAddressInputs({ addressPops, setAddressProp, disable
         <div className='grow'>
           <label>City</label>
           <input
-            style={{ marginTop: 0 }}
-            value={city}
+            // style={{ marginTop: 0 }}
+            className='!mt-0'
+            value={city || ''}
             disabled={disabled}
             required={required}
             onChange={(ev) => setAddressProp('city', ev.target.value)}
@@ -50,7 +56,7 @@ export default function UserAddressInputs({ addressPops, setAddressProp, disable
       </div>
       <label>Country</label>
       <input
-        value={country}
+        value={country || ''}
         disabled={disabled}
         required={required}
         onChange={(ev) => setAddressProp('country', ev.target.value)}

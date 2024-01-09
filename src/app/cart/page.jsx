@@ -86,10 +86,10 @@ export default function CartPage() {
             <SectionHeaders mainHeader='Cart' />
           </div>
           <div className='mt-8'>
-            <ShoppingCart size={200} stroke='#aaa' />
+            <ShoppingCart size={120} stroke='#aaa' />
           </div>
-          <p className='mt-6 text-2xl'>Your shopping cart is empty &nbsp;:(</p>
-          <p className='mt-6 mb-8 text-2xl'>
+          <p className='mt-6 text-xl'>Your shopping cart is empty &nbsp;:(</p>
+          <p className='mt-6 mb-8 text-xl'>
             Select some of our delicious options!
           </p>
           <Link
@@ -108,7 +108,7 @@ export default function CartPage() {
       <div className='text-center'>
         <SectionHeaders mainHeader='Cart' />
       </div>
-      <div className='grid gap-10 grid-cols-2 mt-8'>
+      <div className='grid md:grid-cols-2 gap-10 mt-8'>
         {/* Left Panels - Cart items */}
         <div>
           {cartProducts?.length === 0 ? (

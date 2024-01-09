@@ -42,50 +42,53 @@ export default function OrdersPage() {
             orders.map((order, index) => (
               <div
                 key={index}
-                className='flex grow bg-gray-100 rounded-xl py-2 px-4 gap-1 mb-1 items-center'
+                className='grid sm:flex grow bg-gray-100 rounded-xl py-2 px-4 gap-2 mb-2 items-center'
               >
-                <div className='grid grid-cols-3 md:grid-cols items-center grow gap-4 text-gray-400 text-xs'>
+                <div className='grid sm:grid-cols-3 items-center grow gap-4 text-gray-400 text-xs'>
                   {/* Email */}
                   <div className='text-gray-500 font-bold'>
-                    {order.userEmail}
+                    {order.userEmail || '<no email>'}
                   </div>
                   {/* Products */}
-                  <div className='text-gray-600 text-center'>
+                  <div className='text-gray-600 sm:text-center max-w-[400px]'>
                     {/* {order.cartProducts.length + ' items'} */}
                     {order.cartProducts.map((p) => p.name).join(', ')}
                   </div>
-                  <div className='flex items-center justify-center gap-4 text-white '>
-                    {/* Paid status */}
-                    <span
-                      className={
-                        (order.paid ? 'bg-green-500' : 'bg-red-400') +
-                        ' py-1 px-2 rounded-md text-xs text-center w-[60px]'
-                      }
-                    >
-                      {order.paid ? 'paid' : 'not paid'}
-                    </span>
-                    {/* Date */}
-                    <span className='text-gray-400 text-right'>
-                      {parseTime(order.createdAt)}
-                    </span>
+                  <div className='flex items-center justify-between sm:justify-center gap-2 text-white '>
+                    <div className='flex gap-2 items-center'>
+                      {/* Paid status */}
+                      <span
+                        className={
+                          (order.paid ? 'bg-green-500' : 'bg-red-400') +
+                          ' py-1 px-2 rounded-md text-xs text-center !w-[70px] whitespace-nowrap'
+                        }
+                      >
+                        {order.paid ? 'paid' : 'not paid'}
+                      </span>
+                      {/* Date */}
+                      <span className='text-gray-400 text-center'>
+                        {parseTime(order.createdAt)}
+                      </span>
+                    </div>
+                    <div className='flex gap-2'>
+                      {/* Edit button */}
+                      <Link
+                        href={'/orders/' + order._id}
+                        className='button whitespace-nowrap'
+                        style={{ padding: 8 }}
+                      >
+                        {/* <InfoCircle size={16} /> */}
+                        Show order
+                      </Link>
+                      {/* Delete */}
+                      {/* <DeleteButton
+                    label=''
+                    // onDelete={() => {}}
+                  /> */}
+                    </div>
                   </div>
                 </div>
                 {/* Buttons */}
-                <div className='flex gap-2'>
-                  {/* Edit */}
-                  <Link
-                    href={'/orders/' + order._id}
-                    className='button'
-                    style={{ padding: 8 }}
-                  >
-                    <InfoCircle size={16} />
-                  </Link>
-                  {/* Delete */}
-                  <DeleteButton
-                    label=''
-                    // onDelete={() => handleDeleteClick(user._id)}
-                  />
-                </div>
               </div>
             ))}
         </div>

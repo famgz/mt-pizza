@@ -64,9 +64,8 @@ export default function OrderPage(params) {
               <p>Invalid order parameter</p>
             </div>
           )}
-
+          {/* Paid order */}
           {order && order?.paid && (
-            // Paid order
             <div className='my-4 flex flex-col gap-6 justify-center items-center'>
               <div className='mt-4 text-emerald-400'>
                 <CircleCheck size={160} />
@@ -75,8 +74,8 @@ export default function OrderPage(params) {
               <p>We will contact you when your products will be on the way</p>
             </div>
           )}
+          {/* Unpaid/unfinished order */}
           {order && !order?.paid && (
-            // Unpaid/unfinished order
             <div className='flex flex-col my-4 mt-8 gap-4 justify-center items-center'>
               <p>This order was cancelled or not paid yet</p>
               <p>Go to the Checkout page or create another order</p>
@@ -84,7 +83,7 @@ export default function OrderPage(params) {
           )}
         </div>
         {order && (
-          <div className='grid grid-cols-2 gap-16 mt-12'>
+          <div className='grid md:grid-cols-2 gap-8 md:gap-16 mt-12'>
             {/* Left panel - Order details */}
             <div>
               {order.cartProducts.map((product, index) => (

@@ -8,7 +8,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
   const [image, setImage] = useState(menuItem?.image || '');
   const [name, setName] = useState(menuItem?.name || '');
   const [description, setDescription] = useState(menuItem?.description || '');
-  const [basePrice, setBasePrice] = useState(menuItem?.basePrice || null);
+  const [basePrice, setBasePrice] = useState(menuItem?.basePrice || '');
   const [sizes, setSizes] = useState(menuItem?.sizes || []);
   const [extraIngredients, setExtraIngredients] = useState(
     menuItem?.extraIngredients || []
@@ -38,10 +38,10 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
       className='mt-8 mx-auto'
     >
       <div
-        className='grid items-start gap-4'
+        className='sm:grid items-start gap-4'
         style={{ gridTemplateColumns: '.3fr .7fr' }}
       >
-        <div>
+        <div className='mb-6'>
           <EditableImage
             link={image || '/default-image.jpg'}
             setLink={setImage}
@@ -67,15 +67,14 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
 
           <label>Category</label>
           <select
-          value={category}
+            value={category}
             required={true}
-            defaultValue=''
             onChange={(ev) => {
               setCategory(ev.target.value);
             }}
           >
-            <option value='' disabled='true' selected='true'>
-              Select an category
+            <option value='' disabled={true}>
+              Select a category
             </option>
             {categories?.length > 0 &&
               categories.map((c, i) => (
