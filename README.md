@@ -1,6 +1,7 @@
 # Pizza App 🍕
 
 A fullstack go-to pizza ordering app built with Next.js, JavaScript, MongoDB, Tailwind CSS, and seamlessly integrated with Stripe for secure and efficient transactions.
+With full admin dashboard and user login (credentials or with Google)
 
 
 [![Next.js](https://img.shields.io/badge/Next.js-4A90E2?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
@@ -34,6 +35,7 @@ A fullstack go-to pizza ordering app built with Next.js, JavaScript, MongoDB, Ta
 ## Features
 
 - **Admin Dashboard**
+- **Google and Credentials Login**
 - **User-Friendly Interface**
 - **Real-Time Updates**
 - **Customization**
