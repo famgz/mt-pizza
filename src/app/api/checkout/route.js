@@ -1,14 +1,9 @@
+import { MenuItem } from '@/models/MenuItem';
+import { Order } from '@/models/Order';
 import mongoose from 'mongoose';
 import { getServerSession } from 'next-auth';
-// import stripe from 'stripe';
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 import { authOptions } from '../auth/[...nextauth]/route';
-import { Order } from '@/models/Order';
-import { cartProductTotalPrice } from '@/components/AppContext';
-import { MenuItem } from '@/models/MenuItem';
-
-
-// stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
   mongoose.connect(process.env.MONGO_URL);
@@ -24,9 +19,9 @@ export async function POST(req) {
     paid: false,
   });
 
-  const orderId = orderDoc._id.toString()
+  const orderId = orderDoc._id.toString();
 
-  // items must be checked with the ones in DataBase
+  // items must match the ones in DataBase
   // because the form POST might be modified (hacked) by the user
   const stripeLineItems = [];
   for (const cartProduct of cartProducts) {
@@ -65,7 +60,8 @@ export async function POST(req) {
     line_items: stripeLineItems,
     mode: 'payment',
     customer_email: userEmail,
-    success_url: process.env.NEXTAUTH_URL + 'orders/' + orderId + '?clear-cart=1', // + 'cart?success=1',
+    success_url:
+      process.env.NEXTAUTH_URL + 'orders/' + orderId + '?clear-cart=1', // + 'cart?success=1',
     cancel_url: process.env.NEXTAUTH_URL + 'cart?canceled=1',
     metadata: { orderId: orderId },
     payment_intent_data: {
@@ -82,7 +78,5 @@ export async function POST(req) {
     ],
   });
 
-  return Response.json(stripeSession.url)
-
-  
+  return Response.json(stripeSession.url);
 }

@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pizza App 🍕
+
+A fullstack go-to pizza ordering app built with Next.js, JavaScript, MongoDB, Tailwind CSS, and seamlessly integrated with Stripe for secure and efficient transactions.
+
+
+[![Next.js](https://img.shields.io/badge/Next.js-4A90E2?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://www.javascript.com/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white)](https://reactjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=flat-square&logo=stripe&logoColor=white)](https://stripe.com/)
+
+## Screenshots Customer Page
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/1.jpg" alt="main page" style="border: 1px solid #ddd;" />
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/3.jpg" alt="menu page" style="border: 1px solid #ddd;" />
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/2.jpg" alt="login page" style="border: 1px solid #ddd;" />
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/8.jpg" alt="cart page" style="border: 1px solid #ddd;" />
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/9.jpg" alt="checkout page" style="border: 1px solid #ddd;" />
+
+## Screenshots Admin Dashboard
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/5.jpg" alt="edit menu items" style="border: 1px solid #ddd;" />
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/7.jpg" alt="orders management" style="border: 1px solid #ddd;" />
+
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/6.jpg" alt="edit menu item" style="border: 1px solid #ddd;" />
+
+
+## Features
+
+- **Admin Dashboard**
+- **User-Friendly Interface**
+- **Real-Time Updates**
+- **Customization**
+- **Secure Transactions**
+- **Order History**
+
+## Technologies
+
+- **Next.js:** A React framework for building server-rendered React applications.
+- **JavaScript:** The primary language used for the application logic.
+- **MongoDB:** A NoSQL database for efficient data storage and retrieval.
+- **Tailwind CSS:** A utility-first CSS framework for building modern and responsive designs.
+- **Stripe:** A secure payment gateway for processing transactions.
 
 ## Getting Started
 
-First, run the development server:
+Follow the steps below to get PizzaPal up and running on your local machine.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Installation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository: `git clone https://github.com/famgz/food-ordering-app-nextjs.git`
+2. Navigate to the project directory: `cd food-ordering-app-nextjs`
+3. Install dependencies: `npm install`
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Set up MongoDB: Create a MongoDB database and update the connection string in the `.env` file.
+2. Configure Stripe: Obtain your API keys from the Stripe dashboard and update them in the `.env` file.
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. Start the development server: `npm run dev`
+2. Open your browser and visit `http://localhost:3000`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Enjoy ordering delicious pizzas with PizzaPal!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+We welcome contributions from the community. If you find a bug or have a feature request, please open an issue or submit a pull request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the [MIT License](LICENSE).
+
+Happy pizza ordering! 🍕🎉
