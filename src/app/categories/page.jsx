@@ -108,8 +108,7 @@ export default function CategoriesPage() {
                 onClick={() => {
                   setCategoryName('');
                   setEditedCategory(null);
-                }}
-              >
+                }}>
                 Cancel
               </button>
             </div>
@@ -122,8 +121,7 @@ export default function CategoriesPage() {
             categories.map((c) => (
               <div
                 key={c._id}
-                className='bg-gray-100 rounded-xl py-2 px-4 flex gap-1 mb-1 items-center'
-              >
+                className='bg-gray-100 rounded-xl py-2 px-4 flex gap-1 mb-1 items-center'>
                 <div className='grow'>{c.name}</div>
                 <div className='flex gap-1'>
                   <button
@@ -131,8 +129,7 @@ export default function CategoriesPage() {
                       setEditedCategory(c);
                       setCategoryName(c.name);
                     }}
-                    type='button'
-                  >
+                    type='button'>
                     Edit
                   </button>
                   <DeleteButton

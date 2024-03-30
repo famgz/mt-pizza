@@ -20,8 +20,7 @@ export default function DeleteButton({ label, onDelete }) {
               onClick={() => {
                 setShowConfirm(false);
                 onDelete();
-              }}
-            >
+              }}>
               Yes,&nbsp;delete!
             </button>
           </div>
@@ -31,7 +30,10 @@ export default function DeleteButton({ label, onDelete }) {
   }
 
   return (
-    <button className='items-center p-2' type='button' onClick={() => setShowConfirm(true)}>
+    <button
+      className='items-center p-2'
+      type='button'
+      onClick={() => setShowConfirm(true)}>
       {label}
       <Trash size={18} />
     </button>

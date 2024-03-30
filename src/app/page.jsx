@@ -3,7 +3,6 @@ import HomeMenu from '@/components/layout/HomeMenu';
 import SectionHeaders from '@/components/layout/SectionHeaders';
 
 export default function Home() {
-
   return (
     <>
       <Hero />
@@ -38,8 +37,7 @@ export default function Home() {
         <div className='mt-8'>
           <a
             className='text-4xl underline text-gray-500'
-            href='tel:+55738123456'
-          >
+            href='tel:+55738123456'>
             +55 738 123 456
           </a>
         </div>

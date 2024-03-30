@@ -84,9 +84,7 @@ export default function EditMenuItemPage() {
           </Link>
         </div>
         <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit} />
-        <div
-          className='sm:grid sm:w-[70%] sm:pl-3 items-center ml-auto mt-2 '
-        >
+        <div className='sm:grid sm:w-[70%] sm:pl-3 items-center ml-auto mt-2 '>
           <DeleteButton
             label='Delete this menu item'
             onDelete={handleDeleteClick}

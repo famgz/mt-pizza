@@ -41,8 +41,7 @@ export default function MenuItemsPage() {
                 <Link
                   href={'/menu-items/edit/' + item._id}
                   className='card flex flex-col justify-between items-center bg-gray-200 rounded-lg p-4'
-                  key={item.name}
-                >
+                  key={item.name}>
                   <div className='relative'>
                     <Image
                       className='rounded-md w-full h-full'

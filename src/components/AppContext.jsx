@@ -7,12 +7,12 @@ import toast from 'react-hot-toast';
 export const CartContext = createContext({});
 
 export function cartTotalPrice(cartProducts) {
-  if (!cartProducts) return 0
-  let total = 0
-  for(const product of cartProducts) {
-    total += cartProductTotalPrice(product)
+  if (!cartProducts) return 0;
+  let total = 0;
+  for (const product of cartProducts) {
+    total += cartProductTotalPrice(product);
   }
-  return total
+  return total;
 }
 
 export function cartProductTotalPrice(cartProduct) {
@@ -58,7 +58,7 @@ export function AppProvider({ children }) {
       saveCartProductsToLocalStorage(newCartProducts);
       return newCartProducts;
     });
-    toast.success('Product removed')
+    toast.success('Product removed');
   }
 
   function addToCart(product, size = null, extras = []) {
@@ -79,8 +79,7 @@ export function AppProvider({ children }) {
           addToCart,
           clearCart,
           removeCartProduct,
-        }}
-      >
+        }}>
         {children}
       </CartContext.Provider>
     </SessionProvider>

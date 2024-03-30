@@ -5,7 +5,7 @@ export function UseProfile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetch('/api/profile').then((response) => {
       response.json().then((data) => {
         setData(data);
@@ -14,5 +14,5 @@ export function UseProfile() {
     });
   }, []);
 
-  return {loading, data}
+  return { loading, data };
 }

@@ -26,23 +26,22 @@ export default function MenuPage() {
   return (
     <section className='mt-8'>
       <div className='page-content'>
-      {categories?.length > 0 &&
-        categories.map((c, index) => (
-          <div key={index}>
-            <div className='text-center'>
-              <SectionHeaders mainHeader={c.name} />
+        {categories?.length > 0 &&
+          categories.map((c, index) => (
+            <div key={index}>
+              <div className='text-center'>
+                <SectionHeaders mainHeader={c.name} />
+              </div>
+              <div className='grid sm:grid-cols-3 gap-4 my-8'>
+                {menuItems?.length > 0 &&
+                  menuItems.map((item, index) => {
+                    if (item.category !== c._id) return;
+                    return <MenuItem key={index} {...item} />;
+                  })}
+              </div>
             </div>
-            <div className='grid sm:grid-cols-3 gap-4 my-8'>
-              {menuItems?.length > 0 &&
-                menuItems.map((item, index) => {
-                  if (item.category !== c._id) return;
-                  return <MenuItem key={index} {...item} />;
-                })}
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
-
     </section>
   );
 }

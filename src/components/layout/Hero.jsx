@@ -16,11 +16,15 @@ export default function Hero() {
           delicious joy in life
         </p>
         <div className='flex gap-4 text-sm'>
-          <Link href={'/menu'} className='flex justify-center items-center bg-primary uppercase gap-2 text-white font-bold px-4 py-2 rounded-full'>
+          <Link
+            href={'/menu'}
+            className='flex justify-center items-center bg-primary uppercase gap-2 text-white font-bold px-4 py-2 rounded-full'>
             Order now
             <Right />
           </Link>
-          <Link href={'/menu'} className='flex items-center text-md border-0 gap-2 py-2 text-gray-600 font-semibold'>
+          <Link
+            href={'/menu'}
+            className='flex items-center text-md border-0 gap-2 py-2 text-gray-600 font-semibold'>
             Learn more
             <Right />
           </Link>
@@ -29,7 +33,7 @@ export default function Hero() {
       {/* Pizza image section */}
       <div className='hidden relative grow w-full px-8 sm:block'>
         <Image
-        className='w-full'
+          className='w-full'
           src={'/pizza.png'}
           width={350}
           height={350}

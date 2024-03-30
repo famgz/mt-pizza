@@ -48,7 +48,7 @@ export default function NewMenuItemPage() {
           <Left />
           <span>Show all menu items</span>
         </Link>
-        <MenuItemForm menuItem={null} onSubmit={handleFormSubmit}/>
+        <MenuItemForm menuItem={null} onSubmit={handleFormSubmit} />
       </section>
     </div>
   );

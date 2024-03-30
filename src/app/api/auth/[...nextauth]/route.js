@@ -35,8 +35,8 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
         // const { email, password } = credentials;  // it was causing the login bug
-        const email = credentials?.email
-        const password = credentials?.password
+        const email = credentials?.email;
+        const password = credentials?.password;
 
         mongoose.connect(process.env.MONGO_URL);
         const user = await User.findOne({ email });

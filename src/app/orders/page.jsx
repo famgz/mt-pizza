@@ -42,8 +42,7 @@ export default function OrdersPage() {
             orders.map((order, index) => (
               <div
                 key={index}
-                className='grid sm:flex grow bg-gray-100 rounded-xl py-2 px-4 gap-2 mb-2 items-center'
-              >
+                className='grid sm:flex grow bg-gray-100 rounded-xl py-2 px-4 gap-2 mb-2 items-center'>
                 <div className='grid sm:grid-cols-3 items-center grow gap-4 text-gray-400 text-xs'>
                   {/* Email */}
                   <div className='text-gray-500 font-bold'>
@@ -61,8 +60,7 @@ export default function OrdersPage() {
                         className={
                           (order.paid ? 'bg-green-500' : 'bg-red-400') +
                           ' py-1 px-2 rounded-md text-xs text-center !w-[70px] whitespace-nowrap'
-                        }
-                      >
+                        }>
                         {order.paid ? 'paid' : 'not paid'}
                       </span>
                       {/* Date */}
@@ -75,8 +73,7 @@ export default function OrdersPage() {
                       <Link
                         href={'/orders/' + order._id}
                         className='button whitespace-nowrap'
-                        style={{ padding: 8 }}
-                      >
+                        style={{ padding: 8 }}>
                         {/* <InfoCircle size={16} /> */}
                         Show order
                       </Link>

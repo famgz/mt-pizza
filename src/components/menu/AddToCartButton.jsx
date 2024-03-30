@@ -20,8 +20,7 @@ export default function AddToCartButton({
     <button
       type='button'
       onClick={onClick}
-      className='mt-4 bg-primary text-white rounded-full px-8 py-2 flex items-center text-center justify-center'
-    >
+      className='mt-4 bg-primary text-white rounded-full px-8 py-2 flex items-center text-center justify-center'>
       <span className='whitespace-nowrap'>
         Add from ${basePrice}
         <span className='text-xl'>+</span>

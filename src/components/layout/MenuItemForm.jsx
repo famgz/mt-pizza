@@ -35,12 +35,10 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           category,
         });
       }}
-      className='mt-8 mx-auto'
-    >
+      className='mt-8 mx-auto'>
       <div
         className='sm:grid items-start gap-4'
-        style={{ gridTemplateColumns: '.3fr .7fr' }}
-      >
+        style={{ gridTemplateColumns: '.3fr .7fr' }}>
         <div className='mb-6'>
           <EditableImage
             link={image || '/default-image.jpg'}
@@ -71,8 +69,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
             required={true}
             onChange={(ev) => {
               setCategory(ev.target.value);
-            }}
-          >
+            }}>
             <option value='' disabled={true}>
               Select a category
             </option>

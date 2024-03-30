@@ -1,4 +1,4 @@
-export default function CartPrices({subTotal, deliveryFee, total}) {
+export default function CartPrices({ subTotal, deliveryFee, total }) {
   return (
     <div className='flex justify-end items-center gap-4 py-2'>
       <div className='text-gray-500 text-lg'>

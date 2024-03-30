@@ -24,8 +24,7 @@ export default function Header() {
           </Link>
           <button
             onClick={() => signOut()}
-            className='bg-primary rounded-full text-white px-8 py-2 max-w-[120px]'
-          >
+            className='bg-primary rounded-full text-white px-8 py-2 max-w-[120px]'>
             Logout
           </button>
         </>
@@ -38,8 +37,7 @@ export default function Header() {
           <Link href={'/login'}>Login</Link>
           <Link
             href={'/register'}
-            className='bg-primary rounded-full text-white px-8 py-2 max-w-[120px]'
-          >
+            className='bg-primary rounded-full text-white px-8 py-2 max-w-[120px]'>
             Register
           </Link>
         </>
@@ -83,16 +81,15 @@ export default function Header() {
           </Link>
           <button
             onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-            className='p-1 border-0'
-          >
+            className='p-1 border-0'>
             <Hamburger size={30} stroke='#777' />
           </button>
         </div>
       </div>
       {isMobileNavOpen && (
-        <div 
-        onClick={() => setIsMobileNavOpen(false)}
-        className='flex flex-col md:hidden gap-2 text-center items-center p-4 bg-gray-100 rounded-lg mt-2'>
+        <div
+          onClick={() => setIsMobileNavOpen(false)}
+          className='flex flex-col md:hidden gap-2 text-center items-center p-4 bg-gray-100 rounded-lg mt-2'>
           <Link href={'/'}>Home</Link>
           <Link href={'/menu'}>Menu</Link>
           <Link href={'/#about'}>About</Link>

@@ -30,7 +30,7 @@ export default function MenuItem(menuItem) {
     }
     // items are ready to the cart
     addToCart(menuItem, selectedSize, selectedExtras);
-    await new Promise((resolve) => setTimeout(resolve, 700));  // wait a little so the animation won't break
+    await new Promise((resolve) => setTimeout(resolve, 700)); // wait a little so the animation won't break
     setShowPopup(false);
     // toast.success('Added to cart!');
   }
@@ -65,16 +65,13 @@ export default function MenuItem(menuItem) {
       {showPopup && (
         <div
           onClick={() => setShowPopup(false)}
-          className='fixed inset-0 flex items-center h-full justify-center bg-black/80'
-        >
+          className='fixed inset-0 flex items-center h-full justify-center bg-black/80'>
           <div
             onClick={(ev) => ev.stopPropagation()}
-            className='bg-white my-8 p-2 pb-4 rounded-lg max-w-md'
-          >
+            className='bg-white my-8 p-2 pb-4 rounded-lg max-w-md'>
             <div
               className='overflow-y-scroll p-2'
-              style={{ maxHeight: 'calc(100vh - 100px)' }}
-            >
+              style={{ maxHeight: 'calc(100vh - 100px)' }}>
               <Image
                 className='mx-auto'
                 src={image}
@@ -94,8 +91,7 @@ export default function MenuItem(menuItem) {
                   {sizes.map((size, index) => (
                     <label
                       key={index}
-                      className='flex items-center gap-2 p-2 border rounded-md mb-1 ml-0 capitalize'
-                    >
+                      className='flex items-center gap-2 p-2 border rounded-md mb-1 ml-0 capitalize'>
                       <input
                         type='radio'
                         name='size'
@@ -118,8 +114,7 @@ export default function MenuItem(menuItem) {
                   {extraIngredients.map((extra, index) => (
                     <label
                       key={index}
-                      className='flex items-center gap-2 p-2 border rounded-md mb-1 ml-0 capitalize'
-                    >
+                      className='flex items-center gap-2 p-2 border rounded-md mb-1 ml-0 capitalize'>
                       <input
                         type='checkbox'
                         name={extra.name}
@@ -138,22 +133,19 @@ export default function MenuItem(menuItem) {
                   <button
                     className='w-auto rounded-full'
                     type='button'
-                    onClick={() => setShowPopup(false)}
-                  >
+                    onClick={() => setShowPopup(false)}>
                     Cancel
                   </button>
                 </div>
 
                 <div
                   onClick={handleAddToCartButtonClick}
-                  className='flying-button-parent mt-4 grow'
-                >
+                  className='flying-button-parent mt-4 grow'>
                   <FlyingButton
                     targetTop={'5%'}
                     targetLeft={'95%'}
                     src={image}
-                    animationDuration={0.6}
-                  >
+                    animationDuration={0.6}>
                     <span>Add to cart ${selectedPrice}</span>
                   </FlyingButton>
                 </div>

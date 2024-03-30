@@ -24,14 +24,14 @@ export async function POST(req) {
       'charge.succeeded'
   */
 
-  if(event.type === 'checkout.session.completed') {
-    console.log(event)
-    const orderId = event?.data?.object?.metadata?.orderId
-    const isPaid = event?.data?.object?.payment_status === 'paid'
-    console.log({orderId})
-    if(isPaid) {
-      await Order.findByIdAndUpdate(orderId, {paid: true})
-      console.log('Order succesfully paid!')
+  if (event.type === 'checkout.session.completed') {
+    console.log(event);
+    const orderId = event?.data?.object?.metadata?.orderId;
+    const isPaid = event?.data?.object?.payment_status === 'paid';
+    console.log({ orderId });
+    if (isPaid) {
+      await Order.findByIdAndUpdate(orderId, { paid: true });
+      console.log('Order succesfully paid!');
     }
   }
 

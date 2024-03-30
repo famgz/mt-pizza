@@ -22,8 +22,8 @@ export async function GET(req) {
       return new Response(null, { status: 500 });
     }
   }
-  
-  const admin = await isAdmin()
+
+  const admin = await isAdmin();
 
   // return all orders to be managed by admin
   if (admin) {

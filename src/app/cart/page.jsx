@@ -94,8 +94,7 @@ export default function CartPage() {
           </p>
           <Link
             className='bg-primary rounded-full text-white text-xl font-bold px-8 py-2'
-            href='/menu'
-          >
+            href='/menu'>
             Go to Menu
           </Link>
         </section>
@@ -127,12 +126,12 @@ export default function CartPage() {
           )}
           {/* Order Values */}
           <div className='pr-14'>
-          <CartPrices
-            subTotal={subTotal}
-            deliveryFee={deliveryFee}
-            total={total}
+            <CartPrices
+              subTotal={subTotal}
+              deliveryFee={deliveryFee}
+              total={total}
             />
-            </div>
+          </div>
         </div>
 
         {/* Right panel - Address Checkout form) */}

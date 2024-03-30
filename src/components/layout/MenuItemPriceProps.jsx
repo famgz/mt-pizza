@@ -37,8 +37,7 @@ export default function MenuItemPriceProps({ name, props, setProps }) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className='inline-flex p-1 border-0 justify-start'
-        type='button'
-      >
+        type='button'>
         {isOpen ? <Up size={18} /> : <Down size={18} />}
         <span className='capitalize text-gray-600'>{name + 's'}</span>
         <span className=' text-gray-400'>({props?.length})</span>
@@ -69,8 +68,7 @@ export default function MenuItemPriceProps({ name, props, setProps }) {
                 <button
                   onClick={() => removeProp(index)}
                   type='button'
-                  className='bg-white mb-3 p-3'
-                >
+                  className='bg-white mb-3 p-3'>
                   <Trash size={16} />
                 </button>
               </div>
@@ -79,8 +77,7 @@ export default function MenuItemPriceProps({ name, props, setProps }) {
         <button
           type='button'
           onClick={addProp}
-          className='bg-white items-center'
-        >
+          className='bg-white items-center'>
           <Plus size={20} />
           <span>Add {name.toLowerCase()}</span>
         </button>

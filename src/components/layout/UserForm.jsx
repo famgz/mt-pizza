@@ -98,7 +98,12 @@ export default function UserForm({ user }) {
           onChange={(ev) => setName(ev.target.value)}
         />
         <label>Email</label>
-        <input type='email' disabled defaultValue={user.email} placeholder='Email' />
+        <input
+          type='email'
+          disabled
+          defaultValue={user.email}
+          placeholder='Email'
+        />
 
         <UserAddressInputs
           addressProps={{ phone, streetAddress, postalCode, city, country }}
@@ -107,8 +112,7 @@ export default function UserForm({ user }) {
         <div>
           <label
             className='inline-flex items-center gap-2 ml-0 p-2 mb-2'
-            htmlFor='adminCheckBox'
-          >
+            htmlFor='adminCheckBox'>
             <input
               id='adminCheckBox'
               type='checkbox'
