@@ -10,7 +10,7 @@ import ErrorTriangle from '@/icons/ErrorTriangle';
 import { useParams } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 
-export default function OrderPage(params) {
+export default function OrderPage() {
   const { clearCart } = useContext(CartContext);
   const { id } = useParams();
   const [order, setOrder] = useState();

@@ -1,21 +1,15 @@
 'use client';
 
-import {
-  CartContext,
-  cartProductTotalPrice,
-  cartTotalPrice,
-} from '@/components/AppContext';
+import { CartContext, cartTotalPrice } from '@/components/AppContext';
 import { UseProfile } from '@/components/UseProfile';
 import SectionHeaders from '@/components/layout/SectionHeaders';
 import UserAddressInputs from '@/components/layout/UserAddressInputs';
-import Trash from '@/icons/Trash';
-import Image from 'next/image';
+import CartPrices from '@/components/menu/CartPrices';
+import CartProduct from '@/components/menu/CartProduct';
 import ShoppingCart from '@/icons/ShoppingCart';
+import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import Link from 'next/link';
-import CartProduct from '@/components/menu/CartProduct';
-import CartPrices from '@/components/menu/CartPrices';
 
 export default function CartPage() {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
