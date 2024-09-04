@@ -13,23 +13,23 @@ With full admin dashboard and user login (credentials or with Google)
 
 ## Screenshots Customer Page
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/1.jpg" alt="main page" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/1.jpg" alt="main page" style="border: 1px solid #ddd;" />
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/3.jpg" alt="menu page" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/3.jpg" alt="menu page" style="border: 1px solid #ddd;" />
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/2.jpg" alt="login page" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/2.jpg" alt="login page" style="border: 1px solid #ddd;" />
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/8.jpg" alt="cart page" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/8.jpg" alt="cart page" style="border: 1px solid #ddd;" />
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/9.jpg" alt="checkout page" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/9.jpg" alt="checkout page" style="border: 1px solid #ddd;" />
 
 ## Screenshots Admin Dashboard
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/5.jpg" alt="edit menu items" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/5.jpg" alt="edit menu items" style="border: 1px solid #ddd;" />
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/7.jpg" alt="orders management" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/7.jpg" alt="orders management" style="border: 1px solid #ddd;" />
 
-<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/food-ordering-app/6.jpg" alt="edit menu item" style="border: 1px solid #ddd;" />
+<img src="https://raw.githubusercontent.com/famgz/famgz/main/presentations/mt-pizza/6.jpg" alt="edit menu item" style="border: 1px solid #ddd;" />
 
 
 ## Features
@@ -56,8 +56,8 @@ Follow the steps below to get PizzaPal up and running on your local machine.
 
 ### Installation
 
-1. Clone the repository: `git clone https://github.com/famgz/food-ordering-app-nextjs.git`
-2. Navigate to the project directory: `cd food-ordering-app-nextjs`
+1. Clone the repository: `git clone https://github.com/famgz/mt-pizza-nextjs.git`
+2. Navigate to the project directory: `cd mt-pizza-nextjs`
 3. Install dependencies: `npm install`
 
 ### Configuration
